@@ -1,0 +1,471 @@
+<div
+  class="container-fluid d-flex flex-row justify-content-center mb-0 mt-1 pt-0 pb-3 shadow-lg col-12 col-lg-8"
+>
+  <div class="jumbotron-fluid">
+    <div class="head-icon d-flex justify-content-center my-0 pb-0">
+      <img
+        class="mx-auto my-0 py-0"
+        src="assets/img/tree-trans.svg"
+        width="80"
+        height="80"
+      />
+    </div>
+    <div class="card-body my-0 py-3 shadow-lg">
+      <h3 class="text-dark d-flex justify-content-center mt-1 pt-1 mb-3">
+        Register
+      </h3>
+      <form [formGroup]="userForm" (ngSubmit)="register()">
+        <div class="form-group text-primary">
+          <label
+            for="userName"
+            [ngClass]="fval.userName.valid ? 'text-info' : ''"
+            >Full Name
+            <i *ngIf="fval.userName.valid" class="material-icons"
+              >check_circle</i
+            ></label
+          >
+          <div class="input-group mb-0">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fas fa-user text-primary mx-auto" style="size: 50px">
+                </i>
+              </div>
+            </div>
+            <input
+              id="userName"
+              formControlName="userName"
+              type="text"
+              required
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  (fval.userName.touched || fval.userName.dirty) &&
+                  fval.userName.errors
+              }"
+              placeholder="Enter Name"
+              autocomplete="off"
+            />
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.userName.touched || fval.userName.dirty) &&
+              fval.userName.errors?.required
+            "
+          >
+            The full name is required
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.userName.touched || fval.userName.dirty) &&
+              fval.userName.errors?.minlength
+            "
+          >
+            At least four characters required
+          </div>
+        </div>
+
+        <div class="form-group text-primary">
+          <label
+            for="userEmail"
+            [ngClass]="fval.userEmail.valid ? 'text-info' : ''"
+            >Email
+            <i *ngIf="fval.userEmail.valid" class="material-icons"
+              >check_circle</i
+            ></label
+          >
+          <div class="input-group mb-0">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i
+                  class="fas fa-envelope text-primary mx-auto"
+                  style="size: 50px"
+                ></i>
+              </div>
+            </div>
+            <input
+              id="userEmail"
+              formControlName="userEmail"
+              type="text"
+              required
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  (fval.userEmail.touched || fval.userEmail.dirty) &&
+                  fval.userEmail.errors
+              }"
+              placeholder="Enter Email address"
+              autocomplete="off"
+            />
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.userEmail.touched || fval.userEmail.dirty) &&
+              fval.userEmail.errors?.required
+            "
+          >
+            The Email address is required
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.userEmail.touched || fval.userEmail.dirty) &&
+              fval.userEmail.errors?.userEmail
+            "
+          >
+            Please enter valid Email address
+          </div>
+        </div>
+        <div class="form-group text-primary">
+          <label
+            for="userNumber"
+            [ngClass]="fval.userNumber.valid ? 'text-info' : ''"
+            >Phone Number 1
+            <i *ngIf="fval.userNumber.valid" class="material-icons"
+              >check_circle</i
+            ></label
+          >
+          <div class="input-group mb-0">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i
+                  class="fas fa-phone text-primary mx-auto"
+                  style="size: 50px"
+                ></i>
+              </div>
+            </div>
+            <input
+              id="userNumber"
+              formControlName="userNumber"
+              type="text"
+              required
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  (fval.userNumber.touched || fval.userNumber.dirty) &&
+                  fval.userNumber.errors
+              }"
+              placeholder="e.g. 07XXXXXXXX"
+              autocomplete="off"
+            />
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.userNumber.touched || fval.userNumber.dirty) &&
+              fval.userNumber.errors?.required
+            "
+          >
+            The phone number is required
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.userNumber.touched || fval.userNumber.dirty) &&
+              fval.userNumber.errors?.hasNumber
+            "
+          >
+            The phone number should be equal to 10 "digits"
+          </div>
+        </div>
+        <div class="form-group text-primary">
+          <label
+            for="userNumber"
+            [ngClass]="fval.userNumber2.valid ? 'text-info' : ''"
+            >Phone Number 2
+            <i *ngIf="fval.userNumber2.valid" class="material-icons"
+              >check_circle</i
+            ></label
+          >
+          <div class="input-group mb-0">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i
+                  class="fas fa-phone text-primary mx-auto"
+                  style="size: 50px"
+                ></i>
+              </div>
+            </div>
+            <input
+              id="userNumber2"
+              formControlName="userNumber2"
+              type="text"
+              required
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  (fval.userNumber2.touched || fval.userNumber2.dirty) &&
+                  fval.userNumber2.errors
+              }"
+              placeholder="e.g. 07XXXXXXXX"
+              autocomplete="off"
+            />
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.userNumber2.touched || fval.userNumber2.dirty) &&
+              fval.userNumber2.errors?.required
+            "
+          >
+            The second phone number is required
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.userNumber2.touched || fval.userNumber2.dirty) &&
+              fval.userNumber2.errors?.hasNumber
+            "
+          >
+            The second phone number should be equal to 10 "digits"
+          </div>
+        </div>
+        <!-- <div class="form-group text-primary">
+        <label
+          for="position"
+          [ngClass]="fval.branch.valid ? 'text-info' : ''"
+          >Branch <i *ngIf="fval.branch.valid" class="material-icons"
+            >check_circle</i
+          ></label
+        >
+        <div class="input-group mb-0">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fas fa-code-branch text-primary mx-auto" style="size: 50px;">
+              </i>
+            </div>
+          </div>
+          <select
+          formControlName="branch"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              (fval.branch.touched || fval.branch.dirty) &&
+              fval.branch.errors
+          }"
+          autocomplete="off"
+          placeholder="Select a branch"
+          required
+        >
+        <option value="" selected disabled>Select branch</option>
+        <option *ngFor="let branch of branches" >{{branch.branchName.toUpperCase()}}</option>
+        </select>
+    </div>
+        <div
+          class="text-danger col"
+          *ngIf="
+            (fval.branch.touched || fval.branch.dirty) &&
+            fval.branch.errors?.required
+          "
+        >
+          The branch is required!
+        </div>
+      </div> -->
+        <div class="form-group text-primary">
+          <label
+            for="location"
+            [ngClass]="fval.location.valid ? 'text-info' : ''"
+            >Location
+            <i *ngIf="fval.location.valid" class="material-icons"
+              >check_circle</i
+            ></label
+          >
+          <div class="input-group mb-0">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i
+                  class="fas fa-map-marker-alt text-primary mx-auto"
+                  style="size: 50px"
+                ></i>
+              </div>
+            </div>
+            <input
+              id="location"
+              formControlName="location"
+              type="text"
+              required
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  (fval.location.touched || fval.location.dirty) &&
+                  fval.location.errors
+              }"
+              placeholder="Enter your location"
+              autocomplete="off"
+            />
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.location.touched || fval.location.dirty) &&
+              fval.location.errors?.required
+            "
+          >
+            Your location is required
+          </div>
+        </div>
+
+        <div class="form-group text-primary">
+          <label
+            for="userPassword"
+            [ngClass]="fval.userPassword.valid ? 'text-info' : ''"
+            >Password
+            <i *ngIf="fval.userPassword.valid" class="material-icons"
+              >check_circle</i
+            ></label
+          >
+          <div class="input-group mb-0">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i
+                  class="fas fa-lock text-primary mx-auto"
+                  style="size: 50px"
+                ></i>
+              </div>
+            </div>
+            <input
+              id="userPassword"
+              formControlName="userPassword"
+              type="password"
+              required
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  (fval.userPassword.touched || fval.userPassword.dirty) &&
+                  fval.userPassword.errors
+              }"
+              placeholder="Enter Password"
+              autocomplete="off"
+            />
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i
+                  class="fas"
+                  [ngClass]="{
+                    'fa-eye-slash': !fieldType,
+                    'fa-eye': fieldType
+                  }"
+                  (click)="toggleFieldType()"
+                ></i>
+              </span>
+            </div>
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.userPassword.touched || fval.userPassword.dirty) &&
+              fval.userPassword.errors?.required
+            "
+          >
+            Password required
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.userPassword.touched || fval.userPassword.dirty) &&
+              fval.userPassword.errors?.hasNumber
+            "
+          >
+            Password should contain a number and an uppercase letter
+          </div>
+        </div>
+        <div class="form-group text-primary">
+          <label for="confirm" [ngClass]="fval.confirm.valid ? 'text-info' : ''"
+            >Confirm Password
+            <i *ngIf="fval.confirm.valid" class="material-icons"
+              >check_circle</i
+            ></label
+          >
+          <div class="input-group mb-1">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i
+                  class="fas fa-lock text-primary mx-auto"
+                  style="size: 50px"
+                ></i>
+              </div>
+            </div>
+            <input
+              id="confirm"
+              formControlName="confirm"
+              type="password"
+              required
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  (fval.confirm.touched || fval.confirm.dirty) &&
+                  fval.confirm.errors
+              }"
+              placeholder="Confirm Password"
+              autocomplete="off"
+            />
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i
+                  class="fas"
+                  [ngClass]="{
+                    'fa-eye-slash': !fieldType,
+                    'fa-eye': fieldType
+                  }"
+                  (click)="toggleFieldType()"
+                ></i>
+              </span>
+            </div>
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.confirm.touched || fval.confirm.dirty) &&
+              fval.confirm.hasError('required')
+            "
+          >
+            Confirm Password
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.confirm.touched || fval.confirm.dirty) && matchPasswords()
+            "
+          >
+            Passwords don't match
+          </div>
+        </div>
+        <div class="d-flex my-2 py-2 mx-auto">
+          <button type="submit" class="btn btn-outline-info col-5 mx-auto">
+            Register
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-secondary col-5 mx-auto"
+            (click)="returnHome()"
+            routerLink="/authpage/login"
+          >
+            Cancel
+          </button>
+          <ngx-spinner class="bg-info" size="medium" type="ball-scale-multiple">
+            <p class="text-light">Please wait...</p>
+          </ngx-spinner>
+          <!-- <ngx-alerts></ngx-alerts> -->
+          <label class="col" *ngIf="posted" class="text-info">
+            <!-- <i class="material-icons">check_circle</i> -->
+            <!-- <ngx-alerts></ngx-alerts> -->
+          </label>
+          <label class="col" *ngIf="errored" class="text-info">
+            <!-- <i class="material-icons">check_circle</i> -->
+            <!-- <ngx-alerts></ngx-alerts> -->
+          </label>
+        </div>
+      </form>
+      <!-- </div>  -->
+      <!-- </div>   -->
+    </div>
+    <!--footer -->
+    <div class="d-flex justify-content-center col-12 mt-3 mt-lg-5 mt-xl-3 pt-lg-5 pt-xl-0 mx-auto">
+      <div class="small text-center text-dark">&copy; 2021 - Makorogos</div>
+    </div>
+    <!--/ footer -->
+  </div>
+</div>

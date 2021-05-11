@@ -1,0 +1,46 @@
+<header
+  class="flux-header clearfix"
+  [attr.nav-layout]="navLayout"
+  [attr.navbar-type]="toggleStatus ? defaultNavbar : toggleNavbar"
+  [attr.effect-type]="navbarEffect"
+  [attr.header-theme]="headerColorTheme"
+  [attr.collapsed-left-header]="collapsedLeftHeader"
+  [attr.device-type]="deviceType"
+>
+  <div class="flux-header-wrapper clearfix">
+    <div class="flux-brand" [attr.left-header-theme]="leftHeaderColorTheme">
+      <span class="flux-brand-text">Makorogos</span>
+      <span class="flux-brand-logo"><img src="../../../../assets/img/tree-white.svg"  height="60" width="60"></span>
+    </div>
+    <div class="flux-header-navbar">
+      <div class="flux-left-header clearfix">
+        <div class="sidebarToggle" (click)="changeTheToggleStatus()"><i class="fas fa-bars"></i></div>
+      </div>
+    <span class="text-primo align-self-baseline mb-0 pl-3 pb-0">ADMIN</span>
+      <div class="flux-right-header clearfix">
+        <ul class="align-items-center mt-1 mx-0 px-0">
+          <li>
+<span class="d-none d-lg-inline mr-0 text-gray-600 small">{{
+                userName
+              }}</span
+              ><img
+                class="border rounded-circle img-profile"
+                style="width: 30px; height: 30px"
+                [src]="user"
+              />
+          </li>
+          <li><a (click)="logoutUser()" tooltip="Logout"
+            placement="bottom"><i class="fas fa-power-off"></i></a></li>
+          <ngx-spinner
+          class="bg-warning bg-success"
+          size="medium"
+          type="ball-scale-multiple"
+        >
+          <p class="text-light">Loading...</p>
+        </ngx-spinner>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
