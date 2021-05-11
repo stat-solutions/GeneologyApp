@@ -1,0 +1,1024 @@
+<div
+  class="container-fluid justify-content-center mt-xl-0 mb-0 pt-1 pt-xl-0 pb-2 pb-md-0 shadow-lg col-xs-12 col-lg-12"
+>
+  <div class="jumbotron-fluid mx-0 px-0 mt-1 mt-xl-0 pt-3 pt-xl-0 mb-0 pb-0">
+    <div
+      class="head-container container my-1 mx-auto px-auto py-2 shadow-lg"
+    >
+      <!-- <div class="row">
+        <div class="col-12">
+          <h3 class="rub-head4 text-info text-center font-weight-bold py-1">
+            LOANS
+          </h3>
+          <hr class="mt-0" />
+        </div>
+      </div> -->
+      <div class="stat-row row ml-lg-5 ml-xl-5 mr-lg-0">
+        <div
+          class="thunder-col-1 col-6 col-md-2 col-lg-2 mx-0 mx-md-2 mb-1 mb-lg-2"
+        >
+          <div class="sm-card-1 card shadow py-0">
+            <div class="card-body pt-2 pb-3">
+              <div class="row">
+                <div class="col mx-0 px-0">
+                  <div class="text-uppercase text-white font-weight-bold mb-1">
+                    <span class="sm-card-title-2">Running</span>
+                  </div>
+                  <div class="row">
+                    <div class="col-auto">
+                      <div class="text-gray font-weight-bold h5 mb-0 pb-0">
+                        <span class="pl-3 pb-0">
+                          {{running}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto align-self-baseline pt-4 pb-0">
+                  <i class="fas fa-money-bill-wave text-primary"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="thunder-col-2 col-6 col-md-2 col-lg-2 mx-0 mx-md-2 mb-1 mb-lg-2"
+        >
+          <div class="sm-card-2 card shadow py-0">
+            <div class="card-body pt-2 pb-3">
+              <div class="row">
+                <div class="col mx-0 px-0">
+                  <div
+                    class="text-uppercase text-primary font-weight-bold mb-1"
+                  >
+                    <span class="sm-card-title-2">Approved</span>
+                  </div>
+                  <div class="row">
+                    <div class="col-auto">
+                      <div class="text-dark font-weight-bold h5 mb-0 pb-0">
+                        <span class="pl-3 pb-0">
+                          {{approved}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto align-self-baseline pt-4 pb-0">
+                  <i class="fas fa-check-double text-dark"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="thunder-col-3 col-6 col-sm-4 col-md-2 col-lg-2 mx-0 mx-md-2 mb-0 mb-lg-2"
+        >
+          <div class="sm-card-3 card shadow py-0">
+            <div class="card-body pt-2 pb-3">
+              <div class="row">
+                <div class="col mx-0 px-0">
+                  <div class="text-uppercase text-white font-weight-bold mb-1">
+                    <span class="sm-card-title-3">deferred</span>
+                  </div>
+                  <div class="row">
+                    <div class="col-auto">
+                      <div class="text-gray font-weight-bold h5 mb-0 pb-0">
+                        <span class="pl-3 pb-0">
+                          {{deferred}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto align-self-baseline pt-4 pb-0">
+                  <i class="fas fa-exchange-alt primary"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="thunder-col-4 col-6 col-sm-4 col-md-2 col-lg-2 mx-0 mx-md-2 mb-1 mb-lg-2"
+        >
+          <div class="sm-card-4 card shadow py-0">
+            <div class="card-body pt-2 pb-3">
+              <div class="row">
+                <div class="col mx-0 px-0">
+                  <div
+                    class="text-uppercase text-primary font-weight-bold mb-1"
+                  >
+                    <span class="sm-card-title-4">disbursed</span>
+                  </div>
+                  <div class="row">
+                    <div class="col-auto">
+                      <div class="text-dark font-weight-bold h5 mb-0 pb-0">
+                        <span class="pl-3 pb-0">
+                          {{disbursed}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto align-self-baseline pt-4 pb-0">
+                  <i class="fas fa-hand-holding-usd text-dark"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="thunder-col-3 col-6 col-sm-4 col-md-2 col-lg-2 mx-5 mx-sm-0 mx-md-2 mb-2"
+        >
+          <div class="sm-card-3 card shadow py-0">
+            <div class="card-body pt-2 pb-3">
+              <div class="row">
+                <div class="col mx-0 px-0">
+                  <div class="text-uppercase text-white font-weight-bold mb-1">
+                    <span class="sm-card-title-3">rejected</span>
+                  </div>
+                  <div class="row">
+                    <div class="col-auto">
+                      <div class="text-gray font-weight-bold h5 mb-0 pb-0">
+                        <span class="pl-3 pb-0">
+                          {{rejected}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto align-self-baseline pt-4 pb-0">
+                  <i class="fas fa-times primary"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8 col-md-6 col-lg-4">
+          <div class="mt-1 mt-xl-0 pt-xl-0 mb-2 mx-0 pl-0 pl-xl-2 pr-0">
+            <!-- the search section -->
+            <input
+              type="text"
+              (input)="getValue($event)"
+              class="form-control col-12"
+              name=""
+              id="customer"
+              placeholder="Search"
+              autocomplete="on"
+            />
+          </div>
+        </div>
+        <div class="col-4 col-md-6 col-lg-8 d-flex justify-content-end">
+          <button
+            class="btn btn-primary my-2 ml-sm-4 ml-md-5 ml-xl-1 px-2"
+            tooltip="Export to Excel"
+            (click)="exportToExcel()"
+          >
+            <i class="fas fa-file-export"></i> Export
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <!--record container-->
+        <div
+          class="invest-card card mt-1 py-2 mb-2 mx-auto px-2 shadow-lg"
+          *ngIf="checkTable(loanTable); else noCustomer"
+        >
+          <div
+            class="iteration"
+            *ngIf="checkTable(filteredLoans); else noloans"
+          >
+            <div class="item-container-1 mt-1">
+              <div
+                class="list-card card mt-1 pt-2 mb-0 mx-auto px-0 pb-1 shadow-lg"
+                (click)="openModal(template, loans.loanId)"
+                [ngClass]="{
+                  branch: (loans.theBranchTypeNow === 'BRANCH' && Number(loans.ageSinceCreation) <= loans.loanThresholdTime ),
+                  headOffice: (loans.theBranchTypeNow === 'HEADOFFICE' && Number(loans.ageSinceCreation) <= loans.loanThresholdTime ),
+                  deferred: (loans.movementStatus === 5 && Number(loans.ageSinceCreation) <= loans.loanThresholdTime ),
+                  loanAge: Number(loans.ageSinceCreation) > loans.loanThresholdTime
+                }"
+                *ngFor="
+                  let loans of filteredLoans
+                    | orderBy: key:reverse
+                    ;
+                  let i = index
+                "
+              >
+                <div class="list-card-body card-body my-0 py-0 mx-0 px-0">
+                  <div class="row my-0 py-0 mx-0 px-0">
+                    <div class="col-2 col-lg-1 mx-0 px-0">
+                      <div class="col-12 mx-1 mx-md-0 px-0">
+                        <img
+                          class="img-circle mx-0 mx-sm-4 mx-md-auto mt-2 mt-md-0 mt-xl-1 mb-1 pb-0 d-flex justify-content-center"
+                          [src]="loans.customerPhotoUrl"
+                          (click)="openModal(template, loans.loanId)"
+                        />
+                        <span class="d-flex justify-content-center"
+                          >Customer</span
+                        >
+                      </div>
+                      <div class="col-12 mx-0 px-0">
+                        <img
+                          class="img-circle-2 mx-0 mx-sm-4 mx-md-auto mt-2 mt-md-0 mt-xl-1 mb-1 pb-0 d-flex justify-content-center"
+                          [src]="loans.customerIdPhotoUrl"
+                          (click)="
+                            openModal(template, loans.loanId)
+                          "
+                        />
+                        <span class="d-flex justify-content-center"
+                          >ID Photo</span
+                        >
+                      </div>
+                    </div>
+            <div class="break-text col-10 col-lg-11">
+              <div class="row mx-md-0 px-md-0">
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Loan ID:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold mx-xl-0 px-xl-0"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanId }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">ID No.:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.customerIdNumber }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">ID Type:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.customerIdType }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-3 col-md-2 col-lg-3 col-xl-2 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Name:</span>
+                    </div>
+                    <div
+                      class="col-9 col-md-10 col-lg-9 col-xl-10 d-flex justify-content-start font-weight-bold mx-0 px-0"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.customerName }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Phone No.:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.customerPhone1 }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Type:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanThresholdType }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Product:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold mx-md-0 px-md-0"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanThresholdProduct }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Tenure:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanTenure }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Amount:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanAmount | number }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-lg-4 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">OriginatingBranch:</span>
+                    </div>
+                    <div
+                      class="col-7 col-lg-8 d-flex justify-content-start font-weight-bold mx-lg-0 px-lg-0"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanOriginatingBranch }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Mov't Stage:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.movementStage }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div
+                    class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0"
+                  >
+                    <div class="row">
+                      <div
+                        class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                      >
+                        <span class="">Mov't Status:</span>
+                      </div>
+                      <div
+                        class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                      >
+                        <span class="itemCreated">
+                          {{ loans.movementStatus === 1 ? 'CREATED' :
+                          loans.movementStatus === 2 ? 'FOWARDED' :
+                          loans.movementStatus === 3 ? 'RECEIVED' :
+                          loans.movementStatus === 4 ? 'DISBURSED' : 'DEFFERED' }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                      class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0"
+                    >
+                      <div class="row">
+                        <div
+                          class="col-5 col-lg-4 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">TransactionStatus:</span>
+                        </div>
+                        <div
+                          class="col-7 col-lg-8 d-flex justify-content-start font-weight-bold mx-lg-0 px-lg-0"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.transactionStatus === 0 ? 'NONE' :
+                            loans.transactionStatus === 1 ? 'APPROVED' :
+                            loans.transactionStatus === 2 ? 'DEFERED' :
+                            loans.transactionStatus === 3 ? 'REJECETED' : 'RECTIFIED' }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Moved To:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.branchMovedToNow }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-4 col-md-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Moved by:</span>
+                    </div>
+                    <div
+                      class="col-8 col-md-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ !loans.movedBy ? "NONE" : loans.movedBy }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Mov't Date:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.movementDate }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Mov't Time:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.movementTime }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">AgeSinceMov't</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.ageSinceMovement }} Hours
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">CreationDate:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanCreationDate }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">CreationTime:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanCreationTime }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Total Age:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.ageSinceCreation }} Days
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ end of record container-->
+        <!-- <pagination-controls
+          id="my_pages"
+          (pageChange)="pageChanged($event)"
+          (pageBoundsCorrection)="pageChanged($event)"
+          directionLinks="true"
+        >
+        </pagination-controls> -->
+        <ng-template #noloans>
+          <div class="col-12 my-5 py-5 justify-content-between">
+            <h4 class="text-center text-info">No Loan found</h4>
+          </div></ng-template
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noCustomer>
+  <div class="container my-2 py-2 shadow-lg">
+    <h4 class="text-center text-dark">Loading...</h4>
+  </div>
+</ng-template>
+<ng-template #template>
+  <div class="modal-header bg-info">
+    <h4 class="modal-title text-white-75">Loan Movement Details</h4>
+
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body px-0">
+    <div
+      class="invest-card card mt-1 py-2 mb-2 mx-2 px-2 shadow-lg"
+      *ngIf="checkTable(specificLoanTable)"
+    >
+      <div class="item-container-1 mt-1">
+        <div
+        class="list-card card mt-1 pt-2 mb-0 mx-auto px-0 pb-1 shadow-lg"
+        *ngFor="
+          let loans of specificLoanTable
+          let i = index
+        "
+      >
+        <div class="list-card-body card-body my-0 py-0 mx-0 px-0">
+          <div class="row my-0 py-0 mx-0 px-0">
+            <div class="col-2 col-lg-1 mx-0 px-0">
+              <div class="col-12 mx-1 mx-md-0 px-0">
+                <img
+                  class="img-circle mx-0 mx-sm-4 mx-md-auto mt-2 mt-md-0 mt-xl-1 mb-1 pb-0 d-flex justify-content-center"
+                  [src]="loans.customerPhotoUrl"
+                  (click)="openModal(template, loans.loanId)"
+                />
+                <span class="d-flex justify-content-center"
+                  >Customer</span
+                >
+              </div>
+              <div class="col-12 mx-0 px-0">
+                <img
+                  class="img-circle-2 mx-0 mx-sm-4 mx-md-auto mt-2 mt-md-0 mt-xl-1 mb-1 pb-0 d-flex justify-content-center"
+                  [src]="loans.customerIdPhotoUrl"
+                  (click)="
+                    openModal(template, loans.loanId)
+                  "
+                />
+                <span class="d-flex justify-content-center"
+                  >ID Photo</span
+                >
+              </div>
+            </div>
+            <div class="break-text col-10 col-lg-11">
+              <div class="row mx-md-0 px-md-0">
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-3 col-lg-2 col-xl-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">ID No.:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-9 col-lg-10 col-xl-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.customerIdNumber }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">ID Type:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.customerIdType }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-3 col-md-2 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Name:</span>
+                    </div>
+                    <div
+                      class="col-9 col-md-10 d-flex justify-content-start font-weight-bold mx-0 px-0"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.customerName }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Phone No.:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.customerPhone1 }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Type:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanThresholdType }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Product:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold mx-md-0 px-md-0"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanThresholdProduct }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Tenure:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanTenure }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Amount:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanAmount | number }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-lg-4 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">OriginatingBranch:</span>
+                    </div>
+                    <div
+                      class="col-7 col-lg-8 d-flex justify-content-start font-weight-bold mx-lg-0 px-lg-0"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanOriginatingBranch }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Mov't Stage:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.movementStage }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div
+                    class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0"
+                  >
+                    <div class="row">
+                      <div
+                        class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                      >
+                        <span class="">Mov't Status:</span>
+                      </div>
+                      <div
+                        class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                      >
+                        <span class="itemCreated">
+                          {{ loans.movementStatus === 1 ? 'CREATED' :
+                          loans.movementStatus === 2 ? 'FOWARDED' :
+                          loans.movementStatus === 3 ? 'RECEIVED' :
+                          loans.movementStatus === 4 ? 'DISBURSED' : 'DEFFERED' }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                      class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0"
+                    >
+                      <div class="row">
+                        <div
+                          class="col-5 col-lg-4 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">TransactionStatus:</span>
+                        </div>
+                        <div
+                          class="col-7 col-lg-8 d-flex justify-content-start font-weight-bold mx-lg-0 px-lg-0"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.transactionStatus === 0 ? 'NONE' :
+                            loans.transactionStatus === 1 ? 'APPROVED' :
+                            loans.transactionStatus === 2 ? 'DEFERED' :
+                            loans.transactionStatus === 3 ? 'REJECETED' : 'RECTIFIED' }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Moved To:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.branchMovedToNow }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-4 col-md-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Moved by:</span>
+                    </div>
+                    <div
+                      class="col-8 col-md-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ !loans.movedBy ? "NONE" : loans.movedBy }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Mov't Date:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.movementDate }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Mov't Time:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.movementTime }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 col-xl-4 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">AgeSinceMov't:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 col-xl-8 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.ageSinceMovement }} Hours
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">CreationDate:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanCreationDate }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">CreationTime:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanCreationTime }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-5 col-md-4 col-lg-3 col-xl-4 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Total Age:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 col-xl-8 d-flex justify-content-start font-weight-bold"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.ageSinceCreation }} Days
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                  <div class="row">
+                    <div
+                      class="col-6 col-md-4 col-xl-5 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Action Comment:</span>
+                    </div>
+                    <div
+                      class="col-6 col-md-8 col-xl-7 d-flex justify-content-start font-weight-bold mx-xl-0 px-xl-0"
+                    >
+                      <span class="itemCreated">
+                        {{ loans.loanActionComment }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,183 @@
+<div
+  class="container-fluid d-flex flex-row justify-content-center mb-0 mt-1 pt-0 pb-3 shadow-lg col-12 col-lg-8"
+>
+  <div class="jumbotron-fluid mb-2">
+    <div class="head-icon d-flex justify-content-center my-0 pb-0">
+      <img
+        class="mx-auto my-0 py-0"
+        src="assets/img/tree-trans.svg"
+        width="80"
+        height="80"
+      />
+    </div>
+    <div class="card-body my-0 py-2 shadow-lg">
+      <h3 class="text-dark d-flex justify-content-center mt-2 pt-1 mb-3">
+        Login
+      </h3>
+      <form [formGroup]="userForm" (ngSubmit)="login()">
+        <div class="form-group text-primary">
+          <label
+            for="userEmail"
+            [ngClass]="fval.userEmail.valid ? 'text-info' : ''"
+            >Email <i *ngIf="fval.userEmail.valid" class="material-icons"
+              >check_circle</i
+            ></label
+          >
+          <div class="input-group mb-0">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fas fa-envelope text-primary mx-auto" style="size: 50px">
+                </i>
+              </div>
+            </div>
+            <input
+              id="userEmail"
+              formControlName="userEmail"
+              type="text"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  (fval.userEmail.touched || fval.userEmail.dirty) &&
+                  fval.userEmail.errors
+              }"
+              placeholder="Enter your email"
+              autocomplete="off"
+            />
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.userEmail.touched || fval.userEmail.dirty) &&
+              fval.userEmail.errors?.required
+            "
+          >
+            The Email is required
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.userEmail.touched || fval.userEmail.dirty) &&
+              fval.userEmail.errors?.email
+            "
+          >
+            Please enter a valid email
+          </div>
+        </div>
+
+        <div class="form-group text-primary">
+          <label
+            for="userPassword"
+            [ngClass]="fval.userPassword.valid ? 'text-info' : ''"
+            >Password <i
+              *ngIf="fval.userPassword.valid"
+              class="material-icons"
+              >check_circle</i
+            ></label
+          >
+
+          <div class="input-group mb-0">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i
+                  class="fas fa-lock text-primary mx-auto"
+                  style="size: 50px"
+                ></i>
+              </div>
+            </div>
+            <input
+              [type]="fieldType ? 'text' : 'password'"
+              id="userPassword"
+              formControlName="userPassword"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  (fval.userPassword.touched || fval.userPassword.dirty) &&
+                  fval.userPassword.errors
+              }"
+              placeholder="Enter Password"
+              autocomplete="off"
+            />
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i
+                  class="fas"
+                  [ngClass]="{
+                    'fa-eye-slash': !fieldType,
+                    'fa-eye': fieldType
+                  }"
+                  (click)="toggleFieldType()"
+                ></i>
+              </span>
+            </div>
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (fval.userPassword.touched || fval.userPassword.dirty) &&
+              fval.userPassword.errors?.required
+            "
+          >
+            Password is required
+          </div>
+        </div>
+
+        <div class="row d-flex flex-row">
+          <div class="col-12 my-0 pt-2 pb-0">
+            <div class="form-group">
+              <button
+                type="submit"
+                class="btn btn-outline-info col-12"
+                [disabled]="!userForm.valid"
+              >
+                Login
+              </button>
+
+              <ngx-spinner
+                class="bg-warning bg-info"
+                size="small"
+                type="ball-spin"
+              >
+                <h4 class="text-dark">Loading...</h4>
+              </ngx-spinner>
+              <!-- <ngx-alerts></ngx-alerts> -->
+              <!-- <div class="row">
+                <div class="col" class="text-danger"> -->
+                  <!-- <i class="material-icons"></i> -->
+                  <!-- <ngx-alerts></ngx-alerts> -->
+                <!-- </div> -->
+              <!-- </div> -->
+              <!-- <div class="row">
+                <div class="col" class="text-info"> -->
+                  <!-- <i class="material-icons">check_circle</i> -->
+                  <!-- <ngx-alerts></ngx-alerts> -->
+                <!-- </div>
+              </div> -->
+            </div>
+          </div>
+          <div class="col-12 d-flex flex-row justify-content-start mt-2 pt-0">
+            <div class="form-group">
+              Dont't have an account?<a
+                class="text-dark mr-0"
+                routerLink="../register"
+              >
+                Register
+              </a>
+            </div>
+          </div>
+          <div class="col-6 d-flex flex-row justify-content-start mt-2 pt-0">
+            <div class="form-group" *ngIf="passwordFailed && fval.userEmail.valid">
+              <a class="text-dark mr-0" [routerLink]="['../changepassword', fval.userEmail.value]">
+                Forgot Password?
+              </a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!--footer -->
+    <div class="d-flex justify-content-center col-12 mt-5 pt-5 pt-md-4 pt-xl-2 mx-auto">
+      <div class="small text-center text-dark">&copy; 2021 - Makorogos</div>
+    </div>
+    <!--/ footer -->
+  </div>
+</div>

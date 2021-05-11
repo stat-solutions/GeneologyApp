@@ -1,0 +1,66 @@
+<div
+  class="flux-left-panel"
+  [ngClass]="{
+    hideNav:
+      toggleStatus && navLayout === 'horizontal' && deviceType === 'mobile'
+  }"
+  [attr.nav-layout]="navLayout"
+  [ngStyle]="{ 'height.px': asidebarHeight }"
+  [attr.navbar-type]="toggleStatus ? defaultNavbar : toggleNavbar"
+  [attr.effect-type]="navbarEffect"
+  [attr.navbar-theme]="navbarColorTheme"
+  [attr.active-Nav-theme]="activeNavColorTheme"
+  [attr.device-type]="deviceType"
+>
+  <div class="flux-wrapper">
+    <nav class="flux-navbar">
+      <ul class="menu-list">
+        <li
+          *ngFor="let ml of menuList; let i = index"
+          routerLinkActive="active"
+          class="menu-item"
+          [ngClass]="{ active: isActive(ml.name), hasMenu: ml.subMenu }"
+          appMenudropdown
+        >
+          <a *ngIf="ml.image">
+            <img [src]="imageurl"  height="40" width="40"/>
+          </a>
+
+          <a
+            *ngIf="!((ml.subMenu)||(ml.image))"
+            [routerLink]="ml.url"
+            (click)="onItemSelect(ml.name)"
+          >
+            <span class="flux-micon"><i class="{{ ml.icon }}"></i></span>
+            <span class="flux-mtext">{{ ml.name }}</span>
+            <span *ngIf="ml.badge" class="flux-badge {{ ml.badgeBg }}">{{
+              ml.badge
+            }}</span>
+          </a>
+          <a *ngIf="ml.subMenu" href="javascript:void(0)">
+            <span class="flux-micon"><i class="{{ ml.icon }}"></i></span>
+            <span class="flux-mtext">{{ ml.name }}</span>
+            <span *ngIf="ml.badge" class="flux-badge {{ ml.badgeBg }}">{{
+              ml.badge
+            }}</span>
+            <span class="flux-mcaret"></span>
+          </a>
+          <ul *ngIf="ml.subMenu">
+            <li
+              *ngFor="let child of ml.subMenu"
+              routerLinkActive="active"
+              (click)="onSubItemSelect(ml.name)"
+            >
+              <a [routerLink]="child.url">
+                <span class="flux-micon"
+                  ><i class="{{ child.icon }}"></i>
+                </span>
+                <span class="flux-mtext">{{ child.name }}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

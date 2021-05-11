@@ -1,0 +1,588 @@
+<div
+  class="container-fluid justify-content-center my-0 pt-1 pt-xl-0 pb-2 shadow-lg col-12"
+>
+  <div class="jumbotron-fluid mx-0 px-0 mt-1 mt-xl-0 pt-3 pt-xl-0 mb-0 pb-0">
+    <div
+      class="head-container container my-1 mx-auto px-auto pt-0 pb-2 shadow-lg"
+    >
+      <div class="row">
+        <div class="col-12">
+          <h3 class="rub-head4 text-info text-center font-weight-bold py-1">
+            REPORTS
+          </h3>
+          <hr class="mt-0" />
+        </div>
+      </div>
+      <form [formGroup]="userForm">
+        <div class="d-flex my-0 py-1 mx-auto px-auto">
+          <div class="col-12 mx-0 px-0 px-sm-2 px-md-3">
+            <div class="row">
+              <div class="col-12 col-sm-7 col-md-4">
+                <!--select the kind of report depending on the filter set -->
+                <label for="position">Report Type</label>
+                <div class="input-group mb-0">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fas fa-file text-primary" style="size: 50px">
+                      </i>
+                    </div>
+                  </div>
+                  <select
+                    formControlName="report_type"
+                    class="form-control"
+                    autocomplete="off"
+                    placeholder="Specify Report Type"
+                    (change)="getReport(userForm.controls.report_type.value)"
+                  >
+                    <option selected disabled>Specify Type</option>
+                    <option
+                      *ngFor="let reports of reportTypes"
+                      [ngValue]="reports.reportType"
+                    >
+                      {{ reports.reportType }}
+                    </option>
+                  </select>
+                </div>
+                <!--input field form control to search reports by set filter-->
+                <div class="col" *ngIf="type === 'Running By Branch'">
+                  Branch
+                  <select
+                    formControlName="branch"
+                    class="form-control"
+                    autocomplete="off"
+                    placeholder="Specify Branch"
+                    (change)="getBranchId(userForm.controls.branch.value)"
+                  >
+                    <option selected disabled>Specify Branch</option>
+                    <option
+                      *ngFor="let branch of AllBranches"
+                      [ngValue]="branch.branchName"
+                    >
+                      {{ branch.branchName }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col" *ngIf="type === 'Running By User'">
+                  Users
+                  <select
+                    formControlName="user"
+                    class="form-control"
+                    autocomplete="off"
+                    placeholder="Specify User"
+                    (change)="getUserId(userForm.controls.user.value)"
+                  >
+                    <option selected disabled>Specify User</option>
+                    <option
+                      *ngFor="let user of users"
+                      [ngValue]="user.userName"
+                    >
+                      {{ user.userName }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col" *ngIf="type === 'Running By Movement stage'">
+                  Mov't Stage
+                  <select
+                    formControlName="stage"
+                    class="form-control"
+                    autocomplete="off"
+                    placeholder="Specify Stage"
+                    (change)="getRoleId(userForm.controls.stage.value)"
+                  >
+                    <option selected disabled>Specify Stage</option>
+                    <option
+                      *ngFor="let role of roles"
+                      [ngValue]="role.roleName"
+                    >
+                      {{ role.roleName }}
+                    </option>
+                  </select>
+                </div>
+                <!--/end-->
+              </div>
+              <div class="col-7 col-sm-5 col-md-4">
+                <!--rangedate-->
+                <label for="range_date">Select Date </label>
+
+                <div class="input-group mb-0">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i
+                        class="fas fa-calendar-alt text-primary mx-auto"
+                        style="size: 50px"
+                      >
+                      </i>
+                    </div>
+                  </div>
+                  <input
+                    id="range_date"
+                    formControlName="range_date"
+                    type="text"
+                    class="form-control"
+                    placeholder="Select date range"
+                    autocomplete="off"
+                    bsDaterangepicker
+                    [bsConfig]="{
+                      containerClass: 'theme-blue',
+                      dateInputFormat: 'MM/DD/YYYY',
+                      isAnimated: true
+                    }"
+                    placement="bottom"
+                  />
+                </div>
+              </div>
+              <div
+                class="col-2 col-sm-6 col-md-2 mx-0 pt-1 px-0 px-sm-2 px-md-0"
+              >
+                <button
+                  class="btn btn-info mt-4 mt-sm-2 mt-md-4 mx-0 py-1 py-sm-2 px-1 px-sm-2"
+                  type="submit"
+                  (click)="fetchReport(userForm.controls.range_date.value)"
+                  [disabled]="!userForm.valid"
+                >
+                  <i class="fas fa-search"></i> Search
+                </button>
+              </div>
+              <div
+                class="col-2 col-sm-6 col-md-2 mx-0 px-0 pt-0 d-flex justify-content-end"
+              >
+                <div
+                  ngbDropdown
+                  class="d-inline-block mt-4 mt-sm-2 mt-md-4 mx-0 px-0 px-sm-3 px-md-0"
+                >
+                  <button
+                    class="btn btn-primary mt-1 mb-2 ml-2 ml-md-3 ml-xl-1 mr-0 px-1 px-sm-2"
+                    tooltip="Export to Excel"
+                    (click)="exportToExcel()"
+                  >
+                    <i class="fas fa-file-export"></i> Export
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--Reports-->
+<div class="container">
+  <!--comprehensive report-->
+  <div class="container mt-3 mb-0 shadow-lg">
+    <div class="row">
+      <div class="col-12">
+        <h5
+          class="rub-head4 text-uppercase text-info text-center font-weight-bold py-1"
+        >
+          {{ type }}
+        </h5>
+        <hr class="mt-0 mb-2" />
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 py-2 mb-0 mx-0 px-0">
+    <!--record container-->
+    <div
+      class="invest-card card mt-1 py-2 mb-2 mx-auto px-2 shadow-lg"
+      *ngIf="loading && !filteredLoans.length"
+    >
+      <div class="col-12 my-5 py-5 justify-content-between">
+        <h4 class="text-center text-info"></h4>
+      </div>
+    </div>
+    <div
+      class="invest-card card mt-1 py-2 mb-2 mx-auto px-2 shadow-lg"
+      *ngIf="!filteredLoans.length && !loading"
+    >
+      <div class="col-12 my-5 py-5 justify-content-between">
+        <h4 class="text-center text-info">No Records Found</h4>
+      </div>
+    </div>
+    <div
+      class="invest-card card mt-1 py-2 mb-2 mx-auto px-2 shadow-lg"
+      *ngIf="filteredLoans.length"
+    >
+      <div class="iteration">
+        <div class="item-container-1 mt-1">
+          <div
+            class="list-card card mt-1 pt-2 mb-0 mx-auto px-0 pb-1 shadow-lg"
+            *ngFor="
+              let loans of filteredLoans
+                | orderBy: key:reverse
+                ;
+              let i = index
+            "
+          >
+                <div class="list-card-body card-body my-0 py-0 mx-0 px-0">
+              <div class="row my-0 py-0 mx-0 px-0">
+                <div class="col-2 col-lg-1 mx-0 px-0">
+                      <div class="col-12 mx-1 mx-md-0 px-0">
+                    <img
+                          class="img-circle mx-0 mx-sm-4 mx-md-auto mt-2 mt-md-0 mt-xl-1 mb-1 pb-0 d-flex justify-content-center"
+                      [src]="loans.customerPhotoUrl"
+                    />
+                  </div>
+                </div>
+                <div class="break-text col-10 col-lg-11">
+                  <div class="row mx-md-0 px-md-0">
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">ID No.:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.customerIdNumber }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                      class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">ID Type:</span>
+                    </div>
+                    <div
+                      class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.customerIdType }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                      class="col-3 col-md-2 col-lg-3 col-xl-2 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Name:</span>
+                    </div>
+                    <div
+                      class="col-9 col-md-10 col-lg-9 col-xl-10 d-flex justify-content-start font-weight-bold mx-0 px-0"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.customerName }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">Phone No.:</span>
+                        </div>
+                        <div
+                          class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.customerPhone1 }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">Type:</span>
+                        </div>
+                        <div
+                          class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.loanThresholdType }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">Product:</span>
+                        </div>
+                        <div
+                          class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold mx-md-0 px-md-0"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.loanThresholdProduct }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">Tenure:</span>
+                        </div>
+                        <div
+                          class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.loanTenure }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">Amount:</span>
+                        </div>
+                        <div
+                          class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.loanAmount | number }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-lg-4 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">OriginatingBranch:</span>
+                        </div>
+                        <div
+                          class="col-7 col-lg-8 d-flex justify-content-start font-weight-bold mx-lg-0 px-lg-0"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.loanOriginatingBranch }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">Mov't Stage:</span>
+                        </div>
+                        <div
+                          class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold mx-xl-0 px-xl-0"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.movementStage }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">Mov't Status:</span>
+                        </div>
+                        <div
+                          class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                        >
+                          <span class="itemCreated">
+                            {{
+                              loans.movementStatus === 1
+                                ? "CREATED"
+                                : loans.movementStatus === 2
+                                ? "FOWARDED"
+                                : loans.movementStatus === 3
+                                ? "RECEIVED"
+                                : loans.movementStatus === 4
+                                ? "DISBURSED"
+                                : "DEFFERED"
+                            }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-lg-4 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">TransactionStatus:</span>
+                        </div>
+                        <div
+                          class="col-7 col-lg-8 d-flex justify-content-start font-weight-bold mx-lg-0 px-lg-0"
+                        >
+                          <span class="itemCreated">
+                            {{
+                              loans.transactionStatus === 0
+                                ? "NONE"
+                                : loans.transactionStatus === 1
+                                ? "APPROVED"
+                                : loans.transactionStatus === 2
+                                ? "DEFERED"
+                                : loans.transactionStatus === 3
+                                ? "REJECETED"
+                                : "RECTIFIED"
+                            }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">Moved To:</span>
+                        </div>
+                        <div
+                          class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.branchMovedToNow }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-4 col-md-3 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">Moved by:</span>
+                        </div>
+                        <div
+                          class="col-8 col-md-9 d-flex justify-content-start font-weight-bold"
+                        >
+                          <span class="itemCreated">
+                            {{ !loans.movedBy ? "NONE" : loans.movedBy }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-md-4 col-lg-3 col-xl-4 d-flex justify-content-start mx-md-0 px-md-0"
+                    >
+                      <span class="">Mov't Date:</span>
+                    </div>
+                    <div
+                          class="col-7 col-md-8 col-lg-9 col-xl-8 d-flex justify-content-start font-weight-bold mx-xl-0 px-xl-0"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.movementDate }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">Mov't Time:</span>
+                        </div>
+                        <div
+                          class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.movementTime }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">AgeSinceMov't</span>
+                        </div>
+                        <div
+                          class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.ageSinceMovement }} Hours
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-md-4 col-lg-3 col-xl-4 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">CreationDate:</span>
+                        </div>
+                        <div
+                          class="col-7 col-md-8 col-lg-9 col-xl-8 d-flex justify-content-start font-weight-bold mx-xl-0 px-xl-0"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.loanCreationDate }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">CreationTime:</span>
+                        </div>
+                        <div
+                          class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.loanCreationTime }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4 mx-md-0 px-md-0">
+                      <div class="row">
+                        <div
+                          class="col-5 col-md-4 col-lg-3 d-flex justify-content-start mx-md-0 px-md-0"
+                        >
+                          <span class="">Total Age:</span>
+                        </div>
+                        <div
+                          class="col-7 col-md-8 col-lg-9 d-flex justify-content-start font-weight-bold"
+                        >
+                          <span class="itemCreated">
+                            {{ loans.ageSinceCreation }} Days
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ end of record container-->
+        <!-- <pagination-controls
+          id="my_pages"
+          (pageChange)="pageChanged($event)"
+          (pageBoundsCorrection)="pageChanged($event)"
+          directionLinks="true"
+        >
+        </pagination-controls> -->
+  </div>
+</div>

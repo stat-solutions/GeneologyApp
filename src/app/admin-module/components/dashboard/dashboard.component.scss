@@ -1,0 +1,238 @@
+.jumbotron-fluid {
+  height: inherit !important;
+}
+
+.rub-head4 {
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
+}
+
+.head-container{
+  border-radius: 7px !important;
+}
+.list-card{
+  border-left: 4px solid #7d7e80ce;
+}
+.list-card:hover{
+  border-left: 4px solid #0d3d74ce;
+}
+.sm-card-1 {
+  background-image: linear-gradient(145deg, #361805ce, rgba(249, 251, 252, 0.7));
+  border: 0rem;
+}
+
+.sm-card-2 {
+  background-image: linear-gradient(145deg, rgba(249, 251, 252, 0.7), #fefefe);
+  border: 0rem;
+}
+
+.sm-card-3 {
+  background-image: linear-gradient(145deg, #361805ce, rgba(249, 251, 252, 0.7));
+  border: 0rem;
+}
+
+.sm-card-4 {
+  background-image: linear-gradient(145deg, rgba(249, 251, 252, 0.7), #fefefe);
+  border: 0rem;
+}
+
+.img-circle{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.img-circle-2{
+  width: 60px;
+  height: 45px;
+}
+.branch {
+  background-color: rgb(39, 117, 39);
+  color:  white;
+}
+.headOffice{
+  background-color: rgb(133, 37, 104);
+  color:  white;
+}
+.loanAge {
+  background-color: var(--red);
+  color:  white;
+}
+.deferred {
+  background-color: rgb(184, 124, 14);
+  color:  white;
+}
+.modal-body{
+  font-size: .8rem !important;
+}
+
+
+
+//media queries
+@media (min-width: 320px) {
+  .jumbotron-fluid {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+  }
+}
+
+@media (min-width: 360px) {
+  .sm-card-2 {
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+  }
+  .sm-card-title-2 {
+      font-size: 11px !important;
+      margin-left: 0px !important;
+      padding-left: 2px !important;
+      padding-right: 0px !important;
+  }
+  .sm-card-3 {
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+  }
+  .sm-card-title-3 {
+      font-size: 11px !important;
+      margin-left: 0px !important;
+      padding-left: 2px !important;
+      padding-right: 0px !important;
+  }
+  .sm-card-4 {
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+  }
+  .sm-card-title-4 {
+      font-size: 11px !important;
+      margin-left: 0px !important;
+      padding-left: 3px !important;
+      padding-right: 3px !important;
+  }
+}
+
+@media (min-width: 568px) {
+  .jumbotron-fluid {
+    padding-top: 0px !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+  .jumbotron-fluid {
+    padding-top: .65rem !important;
+    padding-bottom: 1.8rem !important;
+  }
+  .sm-card-1 {
+      min-width: 120px;
+  }
+  .sm-card-2 {
+      min-width: 120px;
+  }
+  .sm-card-3 {
+      min-width: 120px;
+  }
+  .sm-card-4 {
+      min-width: 125px;
+  }
+}
+
+@media (min-width: 812px) {
+  .container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .jumbotron-fluid {
+    padding-top: 0px !important;
+    padding-bottom: .3rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .jumbotron-fluid {
+    padding-top: .6rem !important;
+    padding-bottom: 1.8rem !important;
+  }
+ .stat-row .fas {
+      font-size: 17px !important;
+  }
+  .sm-card-1 {
+      min-width: 140px;
+  }
+  .sm-card-2 {
+      min-width: 140px;
+  }
+  .sm-card-3 {
+      min-width: 140px;
+  }
+  .sm-card-4 {
+      min-width: 140px;
+  }
+.img-circle{
+  width: 55px;
+  height: 55px;
+}
+.img-circle-2{
+  width: 65px;
+  height: 50px;
+}
+}
+
+@media (min-width: 1100px) {
+.img-circle{
+  width: 35px;
+  height: 35px;
+}
+}
+
+@media (min-width: 1280px) {
+  .container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .jumbotron-fluid {
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0rem !important;
+  }
+  .sm-card-1 {
+      min-width: 160px;
+      padding-left: 6px !important;
+      padding-right: 3px !important;
+  }
+  .sm-card-2 {
+      min-width: 160px;
+      padding-left: 8px !important;
+      padding-right: 3px !important;
+  }
+    .sm-card-3 {
+        min-width: 160px;
+    padding-left: 8px !important;
+      padding-right: 3px !important;
+  }
+    .sm-card-4 {
+      min-width: 160px;
+      padding-left: 8px !important;
+      padding-right: 3px !important;
+  }
+
+  .sm-card-title-2 {
+      font-size: 14px !important;
+  }
+  .sm-card-title-3 {
+      font-size: 14px !important;
+  }
+  .sm-card-title-4 {
+      font-size: 14px !important;
+  }
+}
+
+@media (min-width: 1320px) {
+}

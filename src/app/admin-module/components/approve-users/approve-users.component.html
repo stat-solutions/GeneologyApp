@@ -1,0 +1,222 @@
+<div
+  class="container-fluid justify-content-center mt-xl-0 mb-0 pt-1 pt-xl-0 pb-2 shadow-lg col-xs-12"
+>
+  <div class="jumbotron-fluid mx-0 px-0 mt-1 mt-xl-0 pt-3 pt-xl-0 mb-0 pb-0">
+    <div
+      class="head-container container my-1 mx-auto px-auto pt-0 pb-2 shadow-lg"
+    >
+      <div class="row">
+        <div class="col-12">
+          <h3 class="rub-head4 text-dark text-center font-weight-bold py-1">
+            APPROVE USERS
+          </h3>
+        </div>
+      </div>
+      <div class="row">
+      <div class="col-12 col-md-6 col-lg-4">
+                <div class="mt-1 mt-xl-0 pt-xl-0 mb-2 mx-0 pl-0 pl-xl-2">
+						<input type="text" name=""
+            class="form-control col-12"
+						(input)="getValue($event)"
+						 id="name" placeholder="Search" autocomplete="on" />
+			</div>
+			</div>
+            <div class="col-12 col-md-6 col-lg-8 mx-0 pt-1 px-0 px-sm-5 px-md-0 pl-lg-4 d-flex justify-content-end">
+          <button class="btn btn-primary my-2 ml-1 ml-sm-5 mx-md-1 ml-xl-5" tooltip="Export to Excel"
+            tooltip="Export to Excel"
+            (click)="exportToExcel()"
+          >
+            <i class="fas fa-file-export"></i> Export
+          </button>
+          <button class="btn btn-outline-info my-2 ml-1 ml-sm-5 mx-md-1 px-3" (click)="goToUsers()"
+          ><i class="fas fa-chevron-left"></i> Back</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+              <!-- records container-->
+        <div
+        class="invest-card card mt-1 py-2 mb-2 mx-auto px-2 shadow-lg" *ngIf="users else noUsers" #exportTable
+>
+    <div class="item-container-1 mt-1">
+      <div
+        class="list-card card mt-1 pt-2 mb-0 mx-auto px-0 pb-1 shadow-lg" *ngFor="
+                      let user of users
+                      let i = index
+                    "
+      >
+          <div class="list-card-body card-body my-0 py-0 mx-0">
+          <div class="row my-0 py-0">
+                  <div class="col-2 col-md-1">
+                    <img
+                      class="img-circle mx-auto mt-2 mt-md-0 mb-1 pb-0" (click)="openModal(template, user.userPhotoUrl)"
+                      [src]="user.userPhotoUrl"
+                    />
+                  </div>
+            <div class="break-text col-10 col-md-11 mx-lg-0 px-lg-0">
+                <div class="row mx-0 px-0">
+                  <div class="col-12 col-md-4 col-lg-2 mx-lg-0 px-lg-0">
+                    <div class="row">
+                      <div class="col-5 col-md-3 col-lg-4 d-flex justify-content-start mx-md-0 px-md-0">
+                      <span class="">User ID:</span>
+                    </div>
+                      <div
+                        class="col-7 col-md-9 col-lg-8 d-flex justify-content-start font-weight-bold mx-md-0 px-md-0"
+                      >
+                      <span class="itemCreated">
+                        {{ user.userId }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-8 col-lg-4 mx-lg-0 px-lg-0">
+                  <div class="row">
+                      <div class="col-6 col-md-3 d-flex justify-content-start mx-md-0 px-md-0">
+                      <span class="">User Name:</span>
+                    </div>
+                      <div
+                        class="col-6 col-md-9 d-flex justify-content-start font-weight-bold mx-0 px-0"
+                      >
+                      <span class="itemCreated">
+                      {{ user.userName.toUpperCase() }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-8 col-lg-4 mx-lg-0 px-lg-0">
+                  <div class="row">
+                      <div class="col-3 col-xl-2 d-flex justify-content-start mx-md-0 px-md-0">
+                      <span class="">Email:</span>
+                    </div>
+                      <div
+                        class="col-9 col-xl-10 d-flex justify-content-start font-weight-bold mx-md-0 px-md-0"
+                      >
+                      <span class="itemCreated">
+                        {{ user.userEmail}}</span>
+                    </div>
+                  </div>
+                </div>
+                 <div class="col-12 col-md-4 col-lg-2 mt-1 mt-md-0 mx-lg-0 px-lg-0">
+                  <div class="row">
+                      <div class="col d-flex justify-content-end">
+                      <button
+                        type="button"
+                        class="btn btn-outline-info"
+                        tooltip="Assign user role"
+                        (click)="approveUser(template, user, i)"
+                      >
+                        AssignRole
+                      </button>
+</div>
+</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+<!--/ records container-->
+
+              <!--popup modal-->
+
+              <ng-template #template>
+                <div class="modal-header bg-dark">
+                  <h4 class="modal-title text-white" id="modal-basic-title">
+                    Assign Role
+                  </h4>
+                  <button
+                    type="button"
+                    class="close pull-right"
+                    aria-label="Close"
+                    (click)="closeModal()"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group" [formGroup]="userRole">
+                    <label for="c">Assign Role To</label>
+                    <div>
+                      <select
+                        placeholder="assign role"
+                        (change)="assignRole($event)"
+                      >
+                        <option selected disabled>Assigned Role</option>
+                        <option [ngValue]="role.roleName" *ngFor="let role of roles">
+                          {{ role.roleName }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="submit"
+                    class="btn btn-outline-info"
+                    [disabled]="disableButton"
+                    (click)="approvedUser(makeUserApproved, userId, userIndex)"
+                  >
+                    Approve
+                  </button>
+                  <ngx-spinner class="bg-dark" size="medium" type="ball-scale-multiple">
+          <p class="text-light">Please wait...</p>
+        </ngx-spinner>
+        <!-- <ngx-alerts></ngx-alerts> -->
+        <label class="col" *ngIf="posted" class="text-info">
+          <!-- <i class="material-icons">check_circle</i> -->
+          <!-- <ngx-alerts></ngx-alerts> -->
+        </label>
+        <label class="col" *ngIf="errored" class="text-info">
+          <!-- <i class="material-icons">check_circle</i> -->
+          <!-- <ngx-alerts></ngx-alerts> -->
+        </label>
+                  <button
+                    type="submit"
+                    (click)="rejectUser(makeUserApproved, userId, userIndex)"
+                    class="btn btn-secondary"
+                  >
+                    Reject
+                  </button>
+                </div>
+              </ng-template>
+              <ngx-spinner></ngx-spinner>
+              <ngx-spinner
+                class="bg-warning bg-dark"
+                size="small"
+                type="ball-spin"
+              >
+                <h4 class="text-dark">Loading...</h4>
+              </ngx-spinner>
+              <!-- <ngx-alerts></ngx-alerts> -->
+
+              <div class="row">
+                <div class="col" class="text-danger">
+                  <!-- <i class="material-icons"></i> -->
+                  <!-- <ngx-alerts></ngx-alerts> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="col" class="text-dark">
+                  <!-- <i class="material-icons">check_circle</i> -->
+                  <!-- <ngx-alerts></ngx-alerts> -->
+                </div>
+              </div>
+              <!--popup modal-->
+              <!--ApproveUsers-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<ng-template #noUsers>
+  <div class="col-12 my-5 py-5 justify-content-between">
+    <h4 class="text-center text-dark">No Unapproved users yet</h4>
+  </div>
+</ng-template>
+<ng-template #noApproved>
+  <div class="col-12 my-5 py-4 justify-content-between">
+    <h4 class="text-center text-dark">No Approved users yet</h4>
+  </div>
+</ng-template>
+<!-- </div>
+      </div> -->
