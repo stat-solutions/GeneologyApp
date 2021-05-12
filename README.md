@@ -1,2 +1,2 @@
-# MakorogoApp
+# GeneologyApp
 Family Tree tracking app
