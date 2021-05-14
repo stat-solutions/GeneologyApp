@@ -14,7 +14,7 @@ import { Registration } from 'src/app/shared/models/registration-interface';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs/operators';
 // import { AngularFireStorage } from '@angular/fire/storage';
-import { AuthServiceService } from 'src/app/shared/services/auth-service.service';
+// import { AuthServiceService } from 'src/app/shared/services/auth-service.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -39,10 +39,10 @@ export class EditProfileComponent implements OnInit {
   fileInfo = { name: '', size: 0 };
   disableButton = true;
   userPhotoUrl: string;
-  User = this.authService.loggedInUserInfo();
+  // User = this.authService.loggedInUserInfo();
   constructor(
     private EditUser: UsersService,
-    private authService: AuthServiceService,
+    // private authService: AuthServiceService,
     // private storage: AngularFireStorage,
     private fb: FormBuilder,
     // private alertService: AlertService,
@@ -89,14 +89,14 @@ export class EditProfileComponent implements OnInit {
     );
   }
   initializeForm(): any{
-    this.EditUser.getUser(this.User.userId).subscribe( res => {
-      const user = res[0];
-      this.fval.full_name.setValue(user.userName);
-      this.fval.email2.setValue(user.userEmail);
-      this.fval.user_contact_number1.setValue(user.userPhone1);
-      this.fval.user_contact_number2.setValue(user.userPhone2);
-      this.userPhotoUrl = user.userPhotoUrl;
-    });
+    // this.EditUser.getUser(this.User.userId).subscribe( res => {
+    //   const user = res[0];
+    //   this.fval.full_name.setValue(user.userName);
+    //   this.fval.email2.setValue(user.userEmail);
+    //   this.fval.user_contact_number1.setValue(user.userPhone1);
+    //   this.fval.user_contact_number2.setValue(user.userPhone2);
+    //   this.userPhotoUrl = user.userPhotoUrl;
+    // });
   }
   revert(): any {
     this.userForm.reset();
@@ -173,73 +173,73 @@ export class EditProfileComponent implements OnInit {
 
   updateProfile(): any {
     setTimeout(() => {
-      const data = {
-        userId: this.User.userId,
-        userPhotoUrl: this.userPhotoUrl
-      };
-      this.EditUser.putEditUserPhotoUrl(data).subscribe(
-        (res) => {
-          this.posted = true;
-          // this.alertService.success({
-          //     html: '<b> Profile photo edited successfully<b>',
-          //   });
-        },
-        (err) => {
-          this.errored = true;
-          // this.alertService.danger({
-          //     html: '<b> There was a problem<b>',
-          // });
-        }
-      );
+      // const data = {
+      //   userId: this.User.userId,
+      //   userPhotoUrl: this.userPhotoUrl
+      // };
+      // this.EditUser.putEditUserPhotoUrl(data).subscribe(
+      //   (res) => {
+      //     this.posted = true;
+      //     // this.alertService.success({
+      //     //     html: '<b> Profile photo edited successfully<b>',
+      //     //   });
+      //   },
+      //   (err) => {
+      //     this.errored = true;
+      //     // this.alertService.danger({
+      //     //     html: '<b> There was a problem<b>',
+      //     // });
+      //   }
+      // );
       this.closeModal();
     }, 3000);
   }
   save(): any {
-    const data = {
-      userId: this.User.userId,
-      userName: this.fval.full_name.value.toUpperCase(),
-      userPhone1: this.fval.user_contact_number1.value.toUpperCase(),
-      userPhone2: this.fval.user_contact_number2.value.toUpperCase()
-    };
-    this.EditUser.putEditUser(data).subscribe(
-      (res) => {
-        this.posted = true;
-        if (this.fval.email2.value !== '') {
-            const dataEmal = {
-              userId: this.User.userId,
-              userEmail: this.fval.email2.value
-            };
-            this.EditUser.putEditUserEmail(dataEmal).subscribe(
-              (rs) => {
-                this.posted = true;
-                // this.alertService.success({
-                //     html: '<b> Email was edited successfully, please check your email to verify your account<b>',
-                //   });
-              },
-              (err) => {
-                this.errored = true;
-                // this.alertService.danger({
-                //     html: '<b> There was a problem editing user email<b>',
-                // });
-              }
-            );
-            setTimeout(() => {
-              this.initializeForm();
-              this.disableForm();
-              // this.alertService.success({
-              //   html: '<b> Other details were edited successfully<b>',
-              // });
-            }, 3000);
-          }
-      },
-      (err) => {
-        this.errored = true;
-        this.initializeForm();
-        this.disableForm();
-        // this.alertService.danger({
-        //     html: '<b> There was a problem editingg other details<b>',
-        // });
-      }
-    );
+    // const data = {
+    //   userId: this.User.userId,
+    //   userName: this.fval.full_name.value.toUpperCase(),
+    //   userPhone1: this.fval.user_contact_number1.value.toUpperCase(),
+    //   userPhone2: this.fval.user_contact_number2.value.toUpperCase()
+    // };
+    // this.EditUser.putEditUser(data).subscribe(
+    //   (res) => {
+    //     this.posted = true;
+    //     if (this.fval.email2.value !== '') {
+    //         const dataEmal = {
+    //           userId: this.User.userId,
+    //           userEmail: this.fval.email2.value
+    //         };
+    //         this.EditUser.putEditUserEmail(dataEmal).subscribe(
+    //           (rs) => {
+    //             this.posted = true;
+    //             // this.alertService.success({
+    //             //     html: '<b> Email was edited successfully, please check your email to verify your account<b>',
+    //             //   });
+    //           },
+    //           (err) => {
+    //             this.errored = true;
+    //             // this.alertService.danger({
+    //             //     html: '<b> There was a problem editing user email<b>',
+    //             // });
+    //           }
+    //         );
+    //         setTimeout(() => {
+    //           this.initializeForm();
+    //           this.disableForm();
+    //           // this.alertService.success({
+    //           //   html: '<b> Other details were edited successfully<b>',
+    //           // });
+    //         }, 3000);
+    //       }
+    //   },
+    //   (err) => {
+    //     this.errored = true;
+    //     this.initializeForm();
+    //     this.disableForm();
+    //     // this.alertService.danger({
+    //     //     html: '<b> There was a problem editingg other details<b>',
+    //     // });
+    //   }
+    // );
   }
 }

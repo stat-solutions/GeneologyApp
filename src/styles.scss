@@ -289,36 +289,6 @@ label {
     display: inline-block;
     margin-bottom: .5rem
 }
-
-//material form control styling
-// mat-icon-stepper selected color change
-//::ng-deep .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
-//   background-color: red!important;
-//}
-//input outline color
-//::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-//   color: red!important;
-// opacity: 1!important;
-//}
-//mat-input focused color
-::ng-deep .mat-form-field-appearance-fill.mat-focused .mat-form-field-fill-thick {
-    color: #51a416e0 !important;
-}
-
-// mat-input error fill color
-::ng-deep .mat-form-field-appearance-fill.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-fill-thick {
-    color: #d3112bf3 !important;
-    opacity: 0.8 !important;
-}
-
-// mat-input carent color
-//::ng-deep .mat-input-element {
-//  caret-color: red!important;
-//}
-// mat-input error carent color
-//::ng-deep .mat-form-field-invalid .mat-input-element, .mat-warn .mat-input-element {
-//    caret-color: red!important;
-//}
 button {
     border-radius: 0
 }
@@ -1911,13 +1881,21 @@ pre code {
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    -moz-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    -ms-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    -o-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 @media (prefers-reduced-motion:reduce) {
     .form-control {
-        transition: none
-    }
+        transition: none    ;
+        -webkit-transition: none;
+        -moz-transition: none;
+        -ms-transition: none;
+        -o-transition: none;
+}
 }
 
 .form-control::-ms-expand {
@@ -1928,9 +1906,9 @@ pre code {
 .form-control:focus {
     color: #27292c;
     background-color: #fff;
-    border-color: rgb(17, 75, 136);
+    border-color: #462009;
     outline: 0;
-    box-shadow: 0 0 0 .2rem rgba(17, 75, 136, .25)
+    box-shadow: 0 0 0 .2rem rgba(153, 153, 153, 0.25)
 }
 
 //styling of color of placeholder
