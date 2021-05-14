@@ -1,0 +1,816 @@
+<div
+  class="container-fluid justify-content-center mt-xl-0 mb-0 pt-1 pt-xl-0 pb-2 pb-md-0 shadow-lg col-xs-12 col-lg-12"
+>
+  <div class="jumbotron-fluid mx-0 px-0 mt-1 mt-xl-0 pt-3 pt-xl-0 mb-0 pb-0">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="rub-head4 text-dark text-center font-weight-bold py-1">
+          PROFILE
+        </h3>
+      </div>
+    </div>
+    <div class="row mx-2">
+      <div class="col-12">
+          <div class="row">
+            <div class="col-12 col-xl-3">
+              <div
+                class="update-img d-flex mt-3 mt-lg-4 pt-xl-2 mx-5 px-5 mx-lg-1 px-lg-0 justify-content-between"
+              >
+                <img
+                  src="assets/img/man.svg"
+                  alt="Photo not found!"
+                  class="img-fluid img-rounded"
+                />
+              </div>
+              <div
+                class="d-flex mt-3 mx-4 px-4 mx-lg-3 px-lg-4 align-items-center"
+              >
+                <button
+                  class="update-button btn btn-outline-info mx-4"
+                  (click)="update(upload)"
+                >
+                  Update Photo
+                </button>
+              </div>
+              <ng-template #upload let-modal>
+                <div class="modal-header bg-dark">
+                  <h4 class="modal-title text-white-75" id="modal-basic-title">
+                    Update Photo
+                  </h4>
+                  <button
+                    type="button"
+                    class="close"
+                    aria-label="Close"
+                    (click)="closeModal()"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group mb-3">
+                    <div class="form-group">
+                      <input
+                        type="file"
+                        (change)="onFileSelected($event)"
+                        id="resetFile"
+                        class="form-control"
+                        accept="image/*"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-outline-info"
+                    (click)="updateProfile()"
+                    [disabled]="userPhotoUrl === ''"
+                  >
+                    OK
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="closeModal()"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </ng-template>
+              <!-- <ngx-alerts></ngx-alerts> -->
+              <!--update info avatar popup-->
+            </div>
+            <div class="profile-form col-12 col-xl-9 mt-2">
+              <div class="mx-2 my-2 mx-md-3 my-md-4">
+                <!--display the profile info in the form, that should be disabled-->
+                <form [formGroup]="userForm" (ngSubmit)="save()">
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <div class="form-group text-primary">
+                        <label
+                          for="full_name"
+                          [ngClass]="fval.full_name.valid ? 'text-dark' : ''"
+                          >Full Name<i
+                            *ngIf="fval.full_name.valid"
+                            class="material-icons"
+                            >check_circle</i
+                          ></label
+                        >
+                        <div class="input-group mb-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i
+                                class="fas fa-user text-primary mx-auto"
+                                style="size: 50px"
+                              >
+                              </i>
+                            </div>
+                          </div>
+                          <input
+                            id="full_name"
+                            formControlName="full_name"
+                            type="text"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                (fval.full_name.touched ||
+                                  fval.full_name.dirty) &&
+                                fval.full_name.errors
+                            }"
+                            placeholder="Enter Name"
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.full_name.touched || fval.full_name.dirty) &&
+                            fval.full_name.errors?.required
+                          "
+                        >
+                          The full name is required
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group text-primary">
+                        <label
+                          for="date_of_birth"
+                          [ngClass]="
+                            fval.date_of_birth.valid ? 'text-dark' : ''
+                          "
+                          >Date Of Birth<i
+                            *ngIf="fval.date_of_birth.valid"
+                            class="material-icons"
+                            >check_circle</i
+                          ></label
+                        >
+
+                        <div class="input-group mb-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i
+                                class="fas fa-calendar-alt text-primary mx-auto"
+                                style="size: 50px"
+                              >
+                              </i>
+                            </div>
+                          </div>
+                          <input
+                            id="date_of_birth"
+                            formControlName="date_of_birth"
+                            type="text"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                (fval.date_of_birth.touched ||
+                                  fval.date_of_birth.dirty) &&
+                                fval.date_of_birth.errors
+                            }"
+                            placeholder="Click to select Date Of Birth"
+                            autocomplete="off"
+                            class="form-control"
+                            bsDatepicker
+                            [bsConfig]="{
+                              dateInputFormat: 'MM/DD/YYYY',
+                              isAnimated: true
+                            }"
+                            placement="bottom"
+                          />
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.date_of_birth.touched ||
+                              fval.date_of_birth.dirty) &&
+                            fval.date_of_birth.errors?.required
+                          "
+                        >
+                          The date of birth is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <div class="form-group text-primary">
+                        <label
+                          for="id_type"
+                          [ngClass]="fval.id_type.valid ? 'text-dark' : ''"
+                          >ID Type<i
+                            *ngIf="fval.id_type.valid"
+                            class="material-icons"
+                            >check_circle</i
+                          ></label
+                        >
+                        <div class="input-group mb-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i
+                                class="fas fa-user-tag text-primary mx-auto"
+                                style="size: 50px"
+                              >
+                              </i>
+                            </div>
+                          </div>
+                          <select
+                            formControlName="id_type"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                (fval.id_type.touched || fval.id_type.dirty) &&
+                                fval.id_type.errors
+                            }"
+                            autocomplete="off"
+                          >
+                            <option selected>Select ID Type</option>
+                            <option>NATIONAL ID</option>
+                            <option>PASSPORT</option>
+                            <option>DRIVING PERMIT</option>
+                            <option>VILLAGE ID</option>
+                          </select>
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.id_type.touched || fval.id_type.dirty) &&
+                            fval.id_type.errors?.required
+                          "
+                        >
+                          The ID type is required
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group text-primary">
+                        <label
+                          for="id_number"
+                          [ngClass]="fval.id_number.valid ? 'text-dark' : ''"
+                          >ID Number<i
+                            *ngIf="fval.id_number.valid"
+                            class="material-icons"
+                            >check_circle</i
+                          ></label
+                        >
+                        <div class="input-group mb-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i
+                                class="fas fa-tag text-primary mx-auto"
+                                style="size: 50px"
+                              ></i>
+                            </div>
+                          </div>
+                          <input
+                            id="id_number"
+                            formControlName="id_number"
+                            type="text"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                (fval.id_number.touched ||
+                                  fval.id_number.dirty) &&
+                                fval.id_number.errors
+                            }"
+                            placeholder="Enter your ID number"
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.id_number.touched || fval.id_number.dirty) &&
+                            fval.id_number.errors?.required
+                          "
+                        >
+                          The ID number is required
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.id_number.touched || fval.id_number.dirty) &&
+                            fval.id_number.errors?.nationalIdCheck
+                          "
+                        >
+                          Please enter valid ID number
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-md-8">
+                      <div class="form-group text-primary">
+                        <label
+                          for="idPhotoUrl"
+                          [ngClass]="fval.idPhotoUrl.valid ? 'text-dark' : ''"
+                          >ID Upload<i
+                            *ngIf="fval.idPhotoUrl.valid"
+                            class="material-icons"
+                            >check_circle</i
+                          ></label
+                        >
+                        <div class="input-group mb-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i
+                                class="fas fa-image text-primary mx-auto"
+                                style="size: 50px"
+                              ></i>
+                            </div>
+                          </div>
+                          <input
+                            id="idPhotoUrl"
+                            formControlName="idPhotoUrl"
+                            type="file"
+                            src="image/*"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                (fval.idPhotoUrl.touched ||
+                                  fval.idPhotoUrl.dirty) &&
+                                fval.idPhotoUrl.errors
+                            }"
+                          />
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.idPhotoUrl.touched ||
+                              fval.idPhotoUrl.dirty) &&
+                            fval.idPhotoUrl.errors?.required
+                          "
+                        >
+                          Please upload a photo of the user's ID
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <div class="form-group text-primary">
+                        <label
+                          for="userGender"
+                          [ngClass]="fval.userGender.valid ? 'text-dark' : ''"
+                          >Gender<i
+                            *ngIf="fval.userGender.valid"
+                            class="material-icons"
+                            >check_circle</i
+                          ></label
+                        >
+                        <div class="input-group mb-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i
+                                class="fas fa-user-tag text-primary mx-auto"
+                                style="size: 50px"
+                              >
+                              </i>
+                            </div>
+                          </div>
+                          <select
+                            formControlName="userGender"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                (fval.userGender.touched ||
+                                  fval.userGender.dirty) &&
+                                fval.userGender.errors
+                            }"
+                            autocomplete="off"
+                          >
+                            <option selected>Select Gender</option>
+                            <option>MALE</option>
+                            <option>FEMALE</option>
+                          </select>
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.userGender.touched ||
+                              fval.userGender.dirty) &&
+                            fval.userGender.errors?.required
+                          "
+                        >
+                          The gender is required
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group text-primary">
+                        <label
+                          for="jobTitle"
+                          [ngClass]="fval.jobTitle.valid ? 'text-dark' : ''"
+                          >Job Title<i
+                            *ngIf="fval.jobTitle.valid"
+                            class="material-icons"
+                            >check_circle</i
+                          ></label
+                        >
+                        <div class="input-group mb-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i
+                                class="fas fa-tag text-primary mx-auto"
+                                style="size: 50px"
+                              ></i>
+                            </div>
+                          </div>
+                          <input
+                            id="jobTitle"
+                            formControlName="jobTitle"
+                            type="text"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                (fval.jobTitle.touched ||
+                                  fval.jobTitle.dirty) &&
+                                fval.jobTitle.errors
+                            }"
+                            placeholder="Enter your job title"
+                            autocomplete="on"
+                          />
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.jobTitle.touched || fval.jobTitle.dirty) &&
+                            fval.jobTitle.errors?.required
+                          "
+                        >
+                          The job title is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <div class="form-group text-primary">
+                        <label
+                          for="email1"
+                          [ngClass]="fval.email1.valid ? 'text-dark' : ''"
+                          >Home Area Details<i
+                            *ngIf="fval.email1.valid"
+                            class="material-icons"
+                            >check_circle</i
+                          ></label
+                        >
+                        <div class="input-group mb-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i
+                                class="fas fa-envelope text-primary mx-auto"
+                                style="size: 50px"
+                              ></i>
+                            </div>
+                          </div>
+                          <input
+                            id="email1"
+                            formControlName="email1"
+                            type="text"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                (fval.email1.touched || fval.email1.dirty) &&
+                                fval.email1.errors
+                            }"
+                            placeholder="Enter home area details"
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.email1.touched || fval.email1.dirty) &&
+                            fval.email1.errors?.required
+                          "
+                        >
+                          The home area details are required
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group text-primary">
+                        <label
+                          for="email2"
+                          [ngClass]="fval.email2.valid ? 'text-dark' : ''"
+                          >Email<i
+                            *ngIf="fval.email2.valid"
+                            class="material-icons"
+                            >check_circle</i
+                          ></label
+                        >
+                        <div class="input-group mb-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i
+                                class="fas fa-envelope text-primary mx-auto"
+                                style="size: 50px"
+                              ></i>
+                            </div>
+                          </div>
+                          <input
+                            id="email2"
+                            formControlName="email2"
+                            type="text"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                (fval.email2.touched || fval.email2.dirty) &&
+                                fval.email2.errors
+                            }"
+                            placeholder="Enter email address"
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.email2.touched || fval.email2.dirty) &&
+                            fval.email2.errors?.required
+                          "
+                        >
+                          The email address is required
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.email2.touched || fval.email2.dirty) &&
+                            fval.email2.errors?.email2
+                          "
+                        >
+                          Please enter valid email address
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <div class="form-group text-primary">
+                        <label
+                          for="user_contact_number1"
+                          [ngClass]="
+                            fval.user_contact_number1.valid ? 'text-dark' : ''
+                          "
+                          >Phone contact 1<i
+                            *ngIf="fval.user_contact_number1.valid"
+                            class="material-icons"
+                            >check_circle</i
+                          ></label
+                        >
+                        <div class="input-group mb-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i
+                                class="fas fa-phone text-primary mx-auto"
+                                style="size: 50px"
+                              ></i>
+                            </div>
+                          </div>
+                          <input
+                            id="user_contact_number1"
+                            formControlName="user_contact_number1"
+                            type="text"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                (fval.user_contact_number1.touched ||
+                                  fval.user_contact_number1.dirty) &&
+                                fval.user_contact_number1.errors
+                            }"
+                            placeholder="e.g. 07XXXXXXXX"
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.user_contact_number1.touched ||
+                              fval.user_contact_number1.dirty) &&
+                            fval.user_contact_number1.errors?.required
+                          "
+                        >
+                          The phone number is required
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.user_contact_number1.touched ||
+                              fval.user_contact_number1.dirty) &&
+                            fval.user_contact_number1.errors?.hasNumber
+                          "
+                        >
+                          The phone number should be equal to 10 "digits"
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group text-primary">
+                        <label
+                          for="user_contact_number2"
+                          [ngClass]="
+                            fval.user_contact_number2.valid ? 'text-dark' : ''
+                          "
+                          >Phone Number 2<i
+                            *ngIf="fval.user_contact_number2.valid"
+                            class="material-icons"
+                            >check_circle</i
+                          ></label
+                        >
+                        <div class="input-group mb-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i
+                                class="fas fa-phone text-primary mx-auto"
+                                style="size: 50px"
+                              ></i>
+                            </div>
+                          </div>
+                          <input
+                            id="user_contact_number2"
+                            formControlName="user_contact_number2"
+                            type="text"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                (fval.user_contact_number2.touched ||
+                                  fval.user_contact_number2.dirty) &&
+                                fval.user_contact_number2.errors
+                            }"
+                            placeholder="e.g. 07XXXXXXXX (Optional)"
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.user_contact_number2.touched ||
+                              fval.user_contact_number2.dirty) &&
+                            fval.user_contact_number2.errors?.hasNumber
+                          "
+                        >
+                          The phone number should be equal to 10 "digits"
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <div class="form-group text-primary">
+                        <label
+                          for="userRecruitmentDate"
+                          [ngClass]="
+                            fval.userRecruitmentDate.valid ? 'text-dark' : ''
+                          "
+                          >Recruitment Date<i
+                            *ngIf="fval.userRecruitmentDate.valid"
+                            class="material-icons"
+                            >check_circle</i
+                          ></label
+                        >
+                        <div class="input-group mb-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i
+                                class="fas fa-calendar-alt text-primary mx-auto"
+                                style="size: 50px"
+                              >
+                              </i>
+                            </div>
+                          </div>
+                          <input
+                            id="userRecruitmentDate"
+                            formControlName="userRecruitmentDate"
+                            type="text"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                (fval.userRecruitmentDate.touched ||
+                                  fval.userRecruitmentDate.dirty) &&
+                                fval.userRecruitmentDate.errors
+                            }"
+                            placeholder="Select Recruitment Date"
+                            autocomplete="off"
+                            class="form-control"
+                            bsDatepicker
+                            [bsConfig]="{
+                              dateInputFormat: 'MM/DD/YYYY',
+                              isAnimated: true
+                            }"
+                            placement="bottom"
+                          />
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.userRecruitmentDate.touched ||
+                              fval.userRecruitmentDate.dirty) &&
+                            fval.userRecruitmentDate.errors?.required
+                          "
+                        >
+                          The recruitment date is required
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group text-primary">
+                        <label
+                          for="employmentNumber"
+                          [ngClass]="
+                            fval.employmentNumber.valid ? 'text-dark' : ''
+                          "
+                          >Employee Number<i
+                            *ngIf="fval.employmentNumber.valid"
+                            class="material-icons"
+                            >check_circle</i
+                          ></label
+                        >
+                        <div class="input-group mb-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i
+                                class="fas fa-tag text-primary mx-auto"
+                                style="size: 50px"
+                              ></i>
+                            </div>
+                          </div>
+                          <input
+                            id="employmentNumber"
+                            formControlName="employmentNumber"
+                            type="text"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                (fval.employmentNumber.touched ||
+                                  fval.employmentNumber.dirty) &&
+                                fval.employmentNumber.errors
+                            }"
+                            placeholder="Enter your employee number"
+                            autocomplete="on"
+                          />
+                        </div>
+                        <div
+                          class="text-danger col"
+                          *ngIf="
+                            (fval.employmentNumber.touched ||
+                              fval.employmentNumber.dirty) &&
+                            fval.employmentNumber.errors?.required
+                          "
+                        >
+                          The employee number is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex my-2 pt-0 pb-2 mx-auto">
+                    <button
+                      type="submit"
+                      class="btn btn-outline-info col-4 col-md-3 mx-auto"
+                      [disabled]="!userForm.valid"
+                    ><i class="fas fa-save mx-auto"></i>
+                      Save
+                    </button>
+
+                    <ngx-spinner
+                      bdColor="#175b6f86"
+                      size="medium"
+                      color="#27ceaa"
+                      type="ball-clip-rotate-multiple"
+                    >
+                      <!--p class="text-light justify-content-between align-items-center mt-4 pt-4 mt-md-4 pt-md-2">Please wait...</p-->
+                    </ngx-spinner>
+
+                    <!--label class="col" class="text-danger">
+            <i class="material-icons">Cancel</i>
+
+            <ngx-alerts></ngx-alerts>
+          </label-->
+
+                    <!--label class="col" class="text-dark">
+            <i class="material-icons">check_circle</i>
+            <ngx-alerts></ngx-alerts>
+          </label-->
+
+                    <button
+                      type="button"
+                      class="btn btn-secondary col-4 col-md-3 mx-auto"
+                      (click)="returnHome()"
+                    ><i class="fas fa-times mx-auto"></i>
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-outline-info col-4 col-md-3 mx-auto"
+                      (click)="enableEdit()"
+                    ><i class="fas fa-edit mx-auto"></i>
+                      Edit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>

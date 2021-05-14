@@ -1,0 +1,25 @@
+<div class="flux-content-section" [attr.nav-layout]="navLayout" [ngStyle]="{'height.px': contentHeight}"
+  [attr.navbar-type]="toggleStatus ? defaultNavbar : toggleNavbar " [attr.effect-type]="navbarEffect"
+  [attr.device-type]="deviceType">
+  <!-- <div class="flux-wrapper">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="screen-title-section">
+          <h1 class="screen-title">{{screenTitle}}</h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Library</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Data</li>
+            </ol>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+
+  </div> -->
+  <router-outlet></router-outlet>
+</div>
+
+

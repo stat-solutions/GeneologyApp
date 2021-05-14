@@ -1,0 +1,59 @@
+<!-- <div class="flux-right-panel" [ngClass]="{open: rightPanelStatus}">
+  <div class="selector-toggle">
+    <span (click)="changeTheRightPanelStatus()"></span>
+  </div>
+  <h1 class="title">Style Selector</h1>
+  <ul class="setting-list">
+    <li>
+      <div class="toggle-switch clearfix" (change)="changeNavbar($event)">
+        <span class="switch-text float-left">Horizontal Navbar</span>
+        <label class="switch float-right">
+          <input type="checkbox">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="toggle-switch clearfix" (change)="setThemeLayout($event)">
+        <span class="switch-text float-left">Boxed layout</span>
+        <label class="switch float-right">
+          <input type="checkbox">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="toggle-switch clearfix" (change)="setCollapsedLeftHeader($event)">
+        <span class="switch-text float-left">Collapsed left header</span>
+        <label class="switch float-right">
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </li>
+    <li class="color-theme-setting clearfix">
+      <h3 class="theme-title">Left Header Theme</h3>
+      <a *ngFor="let item of lHeaderTheme;  let i = index;" class="leftheader-theme" [attr.theme]="item.theme"
+        (click)="onLheaderThemeChange(item.theme);">&nbsp;</a>
+    </li>
+    <li class="color-theme-setting clearfix">
+      <h3 class="theme-title">Header Theme</h3>
+      <a *ngFor="let item of headerTheme;  let i = index;" class="leftheader-theme" [attr.theme]="item.theme"
+        (click)="onHeaderThemeChange(item.theme);">&nbsp;</a>
+    </li>
+    <li class="color-theme-setting clearfix">
+      <h3 class="theme-title">Asidebar Theme</h3>
+      <a *ngFor="let item of leftPanelTheme;  let i = index;" class="leftheader-theme"
+        [attr.theme]="item.theme" (click)="onAsidebarThemeChange(item.theme);">&nbsp;</a>
+    </li>
+    <li>
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Vertical Navbar Effect</label>
+        <select class="form-control" [(ngModel)]='navbarEffect' (change)="onChangeEffect($event.target.value)">
+          <option *ngFor="let effect of navBarMenuEffectList" [value]="effect" >{{effect}}</option>
+        </select>
+      </div>
+    </li>
+  </ul>
+</div>
+ -->

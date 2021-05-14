@@ -1,0 +1,193 @@
+<div
+  class="container-fluid justify-content-center mt-xl-0 mb-0 pt-1 pt-xl-0 pb-2 shadow-lg col-xs-12"
+>
+  <div class="jumbotron-fluid mx-0 px-0 mt-1 mt-xl-0 pt-3 pt-xl-0 mb-0 pb-0">
+    <div
+      class="head-container container my-1 mx-auto px-auto pt-0 pb-2 shadow-lg"
+    >
+              <div class="row">
+          <div class="col-12">
+            <h3
+              class="rub-head4 text-dark text-center font-weight-bold py-1"
+            >
+              LOGGED-IN USERS
+            </h3>
+          </div>
+        </div>
+      <div class="row">
+      <div class="col-12 col-md-6 col-lg-4">
+                <div class="mt-1 mt-xl-0 pt-xl-0 mb-2 mx-0 pl-0 pl-xl-2">
+						<input type="text" name=""
+            class="form-control col-12"
+						(input)="getValue($event)"
+						 id="name" placeholder="Search" autocomplete="on" />
+			</div>
+			</div>
+            <div class="col-12 col-md-6 col-lg-8 mx-0 pt-1 px-0 px-sm-5 px-md-0 pl-lg-4 d-flex justify-content-end">
+          <button class="btn btn-primary my-2 ml-1 ml-sm-5 mx-md-1 ml-xl-5" tooltip="Export to Excel"
+            tooltip="Export to Excel"
+            (click)="exportToExcel()"
+          >
+            <i class="fas fa-file-export"></i> Export
+          </button>
+          <button class="btn btn-outline-info my-2 ml-1 ml-sm-5 mx-md-1 px-3" (click)="goToUsers()"
+          ><i class="fas fa-chevron-left"></i> Back</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+              <!-- records container-->
+        <div
+        class="invest-card card mt-1 py-2 mb-2 mx-auto px-2 shadow-lg" *ngIf="checkLoggedInUsers(filteredUsers); else noCustomer"
+>
+    <div class="item-container-1 mt-1">
+      <div
+        class="list-card card mt-1 pt-2 mb-0 mx-auto px-0 pb-1 shadow-lg" *ngFor="let logged of filteredUsers|orderBy:key:reverse; let i = index"
+      >
+          <div class="list-card-body card-body my-0 py-0 mx-0">
+          <div class="row my-0 py-0">
+                  <div class="col-2 col-md-1">
+                    <img
+                      class="img-circle mx-auto mt-2 mt-md-0 mb-1 pb-0" (click)="openModal(template, logged.userPhotoUrl)"
+                      [src]="logged.userPhotoUrl"
+                    />
+                  </div>
+            <div class="break-text col-10 col-md-11 mx-lg-0 px-lg-0">
+                <div class="row mx-0 px-0">
+                  <div class="col-12 col-md-6 col-lg-2">
+                    <div class="row">
+                      <div class="col-3 col-xl-2 d-flex justify-content-start mx-0 px-0">
+                      <span class="">ID:</span>
+                    </div>
+                      <div
+                        class="col-9 col-xl-10 d-flex justify-content-start font-weight-bold mx-0 px-0 mx-lg-auto px-lg-2"
+                      >
+                      <span class="itemCreated">
+                        {{ logged.loggedInUsersId }}                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-5">
+                  <div class="row">
+                      <div class="col-3 col-xl-2 d-flex justify-content-start mx-0 px-0">
+                      <span class="">Name:</span>
+                    </div>
+                      <div
+                        class="col-9 col-xl-10 d-flex justify-content-start font-weight-bold mx-0 px-0"
+                      >
+                      <span class="itemCreated">
+                      {{ logged.userName }}                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-5">
+                  <div class="row">
+                      <div class="col-3 col-xl-2 d-flex justify-content-start mx-0 px-0">
+                      <span class="">Email:</span>
+                    </div>
+                      <div
+                        class="col-9 col-xl-10 d-flex justify-content-start font-weight-bold mx-0 px-0"
+                      >
+                      <span class="itemCreated">
+                        {{ logged.userEmail }}                      </span>
+                    </div>
+                  </div>
+                </div> <div class="col-12 col-md-6 col-lg-3">
+                  <div class="row">
+                      <div class="col-4 col-md-3 col-lg-4 d-flex justify-content-start mx-0 px-0">
+                      <span class="">Phone No.:</span>
+                    </div>
+                      <div
+                        class="col-8 col-md-9 col-lg-8 d-flex justify-content-start font-weight-bold mx-0 px-0"
+                      >
+                      <span class="itemCreated">
+                        {{ logged.userPhone1 }}                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="row">
+                      <div class="col-4 col-md-3 d-flex justify-content-start mx-0 px-0">
+                      <span class="">LogIn Date:</span>
+                    </div>
+                      <div
+                        class="col-8 col-md-9 d-flex justify-content-start font-weight-bold mx-0 px-0"
+                      >
+                      <span class="itemCreated">
+                        {{ logged.loginDate }}                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div class="row">
+                      <div class="col-4 col-md-3 col-lg-4 d-flex justify-content-start mx-0 px-0">
+                      <span class="">LogIn Time:</span>
+                    </div>
+                      <div
+                        class="col-8 col-md-9 col-lg-8 d-flex justify-content-start font-weight-bold mx-0 px-0"
+                      >
+                      <span class="itemCreated">
+                        {{ logged.loginTime }}                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-2">
+                  <div class="row" *ngIf="User.userName !== logged.userName">
+                      <div class="col d-flex justify-content-end">
+                      <button class="btn btn-outline-info"
+                      (click)="logOut(logged.loggedInUsersId)"
+                      >Logout</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+<!--/ records container-->
+</div>
+<!-- <pagination-controls  id="my_pages"
+(pageChange)="pageChanged($event)"
+(pageBoundsCorrection)="pageChanged($event)"
+directionLinks="true">
+</pagination-controls> -->
+            </div>
+          </div>
+        </div>
+      </div>
+                  <ng-template #noCustomer>
+                              <div class="col-12 my-5 py-5 justify-content-between">
+              <h4 class="text-center text-dark">No User logged in</h4>
+            </div>
+                  </ng-template>
+<ng-template #template>
+  <div class="modal-header bg-dark">
+    <h4 class="modal-title text-white-75">User Photo</h4>
+
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="list-card-1 card mt-1 pt-2 mb-0 mx-auto pb-1 shadow-lg">
+      <div class="list-card-body card-body">
+        <div class="row d-flex justify-content-center">
+          <div class="col-12 d-flex justify-content-center">
+            <img
+              class="img-circle-1 mx-auto mt-2 mt-md-0 mt-xl-1 mb-1 pb-0"
+              [src]="imageUrl"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

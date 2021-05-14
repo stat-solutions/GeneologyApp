@@ -1,0 +1,554 @@
+<div
+  class="container-fluid justify-content-center mt-0 mb-0 pt-1 pt-xl-0 pb-2 pb-md-0 shadow-lg col-xs-12 col-lg-12"
+>
+  <div class="jumbotron-fluid mx-0 px-0 mt-1 mt-xl-0 pt-3 pt-xl-0 mb-0 pb-0">
+    <div
+      class="head-container container my-1 mx-auto px-auto pt-0 pb-2 shadow-lg"
+    >
+      <div class="row">
+        <div class="col-12">
+          <h3 class="rub-head4 text-dark text-center font-weight-bold py-1">
+            USERS
+          </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-5 col-lg-4">
+          <div class="mt-1 mt-xl-0 pt-xl-0 mb-2 mx-0 pl-0 pl-xl-2">
+            <input
+              type="text"
+              name=""
+              class="form-control col-12"
+              (input)="getValue($event)"
+              id="name"
+              placeholder="Search"
+              autocomplete="on"
+            />
+          </div>
+        </div>
+        <div
+          class="col-12 col-md-7 col-lg-8 mx-0 pt-1 px-4 px-sm-5 px-md-0 d-flex justify-content-end"
+        >
+          <button
+            class="btn btn-primary my-2 ml-0 ml-sm-5 mx-md-1"
+            tooltip="Export to Excel"
+            id='exportTable'
+            (click)="exportToExcel()"
+          >
+            <i class="fas fa-file-export"></i> Export
+          </button>
+
+          <button
+            class="btn btn-outline-info my-2 ml-1 ml-sm-3 mx-md-1"
+            tooltip="Loggedin Users"
+            (click)="loggedInUsers()"
+          >
+            <i class="fas fa-user-check"></i>Loggedin
+          </button>
+          <button
+            class="btn btn-outline-info my-2 ml-1 ml-sm-3 mx-md-1"
+            tooltip="Approve users"
+            (click)="approveUsers()"
+          >
+            <i class="fas fa-user-plus"></i> Approve
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <ngx-spinner class="bg-success" size="medium" type="line-spin-fade">
+          <p class="text-light">Please Wait...</p>
+        </ngx-spinner>
+
+        <label class="col" *ngIf="errored" class="text-danger">
+          <!-- <i class="material-icons">cancel</i> -->
+          <!-- <ngx-alerts></ngx-alerts> -->
+        </label>
+
+        <label class="col" *ngIf="posted" class="text-dark">
+          <!-- <i class="material-icons">check_circle</i> -->
+          <!-- <ngx-alerts></ngx-alerts> -->
+        </label>
+        <!--record container-->
+        <div
+          class="invest-card card mt-1 py-2 mb-2 mx-auto px-2 shadow-lg"
+          *ngIf="checkArrayLength(filteredUsers); else nousers"
+        >
+          <div class="item-container-1 mt-1">
+            <div
+              class="list-card-1 card mt-1 pt-2 mb-0 mx-auto px-0 pb-1 shadow-lg"
+              *ngFor="
+                let user of filteredUsers
+                  | orderBy: key:reverse
+                  ;
+                let i = index
+              "
+            >
+              <div class="list-card-body card-body my-0 py-0 mx-0 px-xl-2">
+                <div class="row my-0 py-0">
+                  <div
+                    class="col-2 col-md-1 mx-md-0 px-md-0 d-flex justify-content-center"
+                  >
+                    <img
+                      class="img-circle mx-auto mt-2 mt-md-0 mt-xl-1 mb-1 pb-0" (click)="openModal(template, user.userPhotoUrl)"
+                      [src]="user.userPhotoUrl === 'MissingPhotoUrl.com' ? 'assets/img/man.svg' : user.userPhotoUrl"
+                    />
+                  </div>
+                  <div class="break-text col-10 col-md-11 mx-lg-0 px-lg-0">
+                    <div class="row mx-md-0 px-md-0">
+                      <div
+                        class="col-12 col-md-5 col-lg-3 mx-xl-0 px-xl-0"
+                      >
+                        <div class="row">
+                          <div
+                            class="col-3 col-lg-4 d-flex justify-content-start mx-0 px-0"
+                          >
+                            <span class="">User ID:</span>
+                          </div>
+                          <div
+                            class="col-9 col-lg-8 d-flex justify-content-start font-weight-bold mx-md-0 px-md-0"
+                          >
+                            <span class="itemCreated"> {{ user.userId }} </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-7 col-lg-5 mx-xl-0 px-xl-0">
+                        <div class="row">
+                          <div
+                            class="col-3 col-xl-2 d-flex justify-content-start mx-0 px-0"
+                          >
+                            <span class="">User Name:</span>
+                          </div>
+                          <div
+                            class="col-9 col-xl-10 d-flex justify-content-start font-weight-bold"
+                          >
+                            <span class="itemCreated">
+                              {{ user.userName }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 col-lg-4 mx-xl-0 px-xl-0">
+                        <div class="row">
+                          <div
+                            class="col-3 col-xl-2 d-flex justify-content-start mx-0 px-0"
+                          >
+                            <span class="">User Role:</span>
+                          </div>
+                          <div
+                            class="col-9 col-xl-10 d-flex justify-content-start font-weight-bold mx-lg-0 px-lg-0 mx-xl-0 px-xl-1"
+                          >
+                            <span class="itemCreated">
+                              {{
+                                user.fkRoleIdUser === 100 ? 'APPLICATION' :
+                                user.fkRoleIdUser === 200 ? 'BRANCH APPROVAL' :
+                                user.fkRoleIdUser === 300 ? 'BRANCH EXIT' :
+                                user.fkRoleIdUser === 400 ? 'REGIONAL APPROVAL' :
+                                user.fkRoleIdUser === 500 ? 'HEAD OFFICE ENTRY' :
+                                user.fkRoleIdUser === 600 ? 'LEGAL REVIEW' :
+                                user.fkRoleIdUser === 700 ? 'CREDIT ANALYSIS' :
+                                user.fkRoleIdUser === 800 ? 'HEAD OFFICE APPROVAL' :
+                                user.fkRoleIdUser === 900 ? 'LOAN ADMIN ENTRY' :
+                                user.fkRoleIdUser === 1000 ? 'LOAN ADMIN VERIFICATION' :
+                                user.fkRoleIdUser === 1100 ? 'LOAN ADMIN EXIT' :
+                                user.fkRoleIdUser === 1200 ? 'DISBURSEMENT' : 'ADMIN'
+                              }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 col-lg-3 mx-xl-0 px-xl-0">
+                        <div class="row">
+                          <div
+                            class="col-3 col-lg-4 col-xl-3 d-flex justify-content-start mx-0 px-0"
+                          >
+                            <span class="">Phone No.:</span>
+                          </div>
+                          <div
+                            class="col-9 col-lg-8 col-xl-9 d-flex justify-content-start font-weight-bold"
+                          >
+                            <span class="itemCreated">
+                              {{ user.userPhone1 }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-9 col-lg-7 mx-xl-0 px-xl-0">
+                        <div class="row">
+                          <div
+                            class="col-2 col-lg-3 col-xl-2 d-flex justify-content-start mx-0 px-0"
+                          >
+                            <span class="">Email:</span>
+                          </div>
+                          <div
+                            class="col-10 col-lg-9 col-xl-10 d-flex justify-content-start font-weight-bold mx-0 px-0"
+                          >
+                            <span class="itemCreated">
+                              {{ user.userEmail }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                <div class="col-12 col-md-3 col-lg-2">
+                  <div class="row">
+                      <div class="col d-flex justify-content-end">
+      <button
+        class="btn btn-outline-info mt-1"
+        tooltip="Edit User's role"
+        (click)="openModal2(editUserRole, user)"
+      >
+        <i class="fas fa-edit"></i>Edit Role
+      </button>
+                     </div>
+                  </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ end of record container-->
+      </div>
+    </div>
+  </div>
+  <ng-template #nousers>
+    <div class="col-12 my-5 py-5 justify-content-between">
+      <h4 class="text-center text-dark">No Users found</h4>
+    </div>
+  </ng-template>
+</div>
+<!-- <ng-template #usertemplate>
+  <div class="modal-header bg-info modal-lg">
+    <h4 class="modal-title text-white-75">User Details</h4>
+
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-12 d-flex justify-content-sm-end mx-0 pt-1 px-0 pl-lg-5">
+      <button
+        class="btn btn-info mt-1 ml-1 ml-sm-3 mx-md-1"
+        tooltip="Edit User's role"
+        (click)="openModal2(editUserRole, user)"
+      >
+        <i class="fas fa-edit"></i>Edit Role
+      </button>
+    </div>
+    <div class="row pt-2">
+      <div class="col-12">
+        <div
+          class="list-card card mt-2 pt-1 mb-1 mx-auto px-lg-0 pb-0 shadow-lg"
+        >
+          <div class="list-card-body card-body my-0 pt-1 pb-0 mx-0 px-0">
+            <div class="row my-0 py-0 mx-lg-0 px-lg-0">
+              <div
+                class="d-flex col-12 col-md-4 col-xl-2 my-0 pt-0 pt-md-4 pt-xl-1 pb-0 mx-lg-0 px-lg-0"
+              > -->
+                <!--add data from the database next to the span after &nbsp;-->
+                <!-- <img class="details-img img-rounded"
+                [src]="user.userPhotoUrl === 'MissingPhotoUrl.com' ? 'assets/img/man.svg' : user.userPhotoUrl" />
+              </div>
+              <div
+                class="col-12 col-md-8 col-xl-10 my-0 pt-2 pt-md-5 pt-xl-3 pb-0 mx-lg-0 px-lg-0"
+              >
+                    <div class="row mx-md-0 px-md-0">
+                      <div
+                        class="col-12 col-md-5 mx-xl-0 px-xl-0"
+                      >
+                        <div class="row">
+                          <div
+                            class="col-5 col-md-3 d-flex justify-content-start mx-md-0 px-md-0"
+                          >
+                            <span class="">User ID</span>
+                          </div>
+                          <div
+                            class="col-7 col-md-9 d-flex justify-content-start font-weight-bold mx-md-0 px-md-0"
+                          >
+                            <span class="itemCreated"> {{ user.userId }} </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-7 mx-xl-0 px-xl-0">
+                        <div class="row">
+                          <div
+                            class="col-5 col-md-3 d-flex justify-content-start mx-md-0 px-md-0"
+                          >
+                            <span class="">User Name</span>
+                          </div>
+                          <div
+                            class="col-7 col-md-9 d-flex justify-content-start font-weight-bold mx-md-0 px-md-0"
+                          >
+                            <span class="itemCreated">
+                              {{ user.userName }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 col-xl-7 mx-xl-0 px-xl-0">
+                        <div class="row">
+                          <div
+                            class="col-5 col-md-3 d-flex justify-content-start mx-md-0 px-md-0"
+                          >
+                            <span class="">User Role</span>
+                          </div>
+                          <div
+                            class="col-7 col-md-9 d-flex justify-content-start font-weight-bold mx-md-0 px-md-0"
+                          >
+                            <span class="itemCreated">
+                              {{
+                                user.fkRoleIdUser === 100 ? 'APPLICATION' :
+                                user.fkRoleIdUser === 200 ? 'BRANCH APPROVAL' :
+                                user.fkRoleIdUser === 300 ? 'BRANCH EXIT' :
+                                user.fkRoleIdUser === 400 ? 'REGIONAL APPROVAL' :
+                                user.fkRoleIdUser === 500 ? 'HEAD OFFICE ENTRY' :
+                                user.fkRoleIdUser === 600 ? 'LEGAL REVIEW' :
+                                user.fkRoleIdUser === 700 ? 'CREDIT ANALYSIS' :
+                                user.fkRoleIdUser === 800 ? 'HEAD OFFICE APPROVAL' :
+                                user.fkRoleIdUser === 900 ? 'LOAN ADMIN ENTRY' :
+                                user.fkRoleIdUser === 1000 ? 'LOAN ADMIN VERIFICATION' :
+                                user.fkRoleIdUser === 1100 ? 'LOAN ADMIN EXIT' :
+                                user.fkRoleIdUser === 1200 ? 'DISBURSEMENT' : 'ADMIN'
+                              }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 col-xl-5 mx-xl-0 px-xl-0">
+                        <div class="row">
+                          <div
+                            class="col-5 col-md-4 d-flex justify-content-start mx-md-0 px-md-0"
+                          >
+                            <span class="">Phone No.</span>
+                          </div>
+                          <div
+                            class="col-7 col-md-8 d-flex justify-content-start font-weight-bold mx-md-0 px-md-0"
+                          >
+                            <span class="itemCreated">
+                              {{ user.userPhone1 }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 mx-xl-0 px-xl-0">
+                        <div class="row">
+                          <div
+                            class="col-5 col-md-3 d-flex justify-content-start mx-md-0 px-md-0"
+                          >
+                            <span class="">Email</span>
+                          </div>
+                          <div
+                            class="col-7 col-md-9 d-flex justify-content-start font-weight-bold mx-md-0 px-md-0"
+                          >
+                            <span class="itemCreated">
+                              {{ user.userEmail }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template> -->
+<ng-template #editUserRole>
+  <div class="modal-header bg-dark">
+    <h4 class="modal-title text-center text-white">Edit User Role</h4>
+    <button
+      type="button"
+      class="pull-right close"
+      data-dismiss="modal"
+      aria-
+      label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  <div class="card-body mt-2 pt-3 mb-3 mx-md-5 pb-3 shadow-lg">
+      <form [formGroup]="userForm" (ngSubmit)="updateUserRole(editUserRole)">
+        <div class="form-group text-primary">
+          <label
+            for="userName"
+            [ngClass]="userForm.controls.userName.valid ? 'text-dark' : ''"
+            >Username<i *ngIf="userForm.controls.userName.valid" class="material-icons"
+              >check_circle</i
+            ></label
+          >
+          <div class="input-group mb-0">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fas fa-user text-primary mx-auto" style="size: 50px">
+                </i>
+              </div>
+            </div>
+            <input
+              type="text"
+              formControlName="userName"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  (userForm.controls.userName.touched || userForm.controls.userName.dirty) &&
+                  userForm.controls.userName.errors
+              }"
+              autocomplete="off"
+              placeholder="Enter Username"
+            />
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (userForm.controls.userName.touched || userForm.controls.userName.dirty) &&
+              userForm.controls.userName.errors?.required
+            "
+          >
+            The username is required
+          </div>
+        </div>
+        <div class="form-group text-primary">
+          <label
+            for="role"
+            [ngClass]="userForm.controls.role.valid ? 'text-dark' : ''"
+            >User Role<i *ngIf="userForm.controls.role.valid" class="material-icons"
+              >check_circle</i
+            ></label
+          >
+          <div class="input-group mb-0">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i
+                  class="fas fa-user-cog text-primary mx-auto"
+                  style="size: 50px"
+                >
+                </i>
+              </div>
+            </div>
+            <select class="form-control"
+              placeholder="assign role"
+              formControlName="role"
+            >
+              <option selected disabled>Assign Role</option>
+              <option [ngValue]="role.roleName" *ngFor="let role of roles">
+                {{ role.roleName }}
+              </option>
+            </select>
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (userForm.controls.role.touched || userForm.controls.role.dirty) &&
+              userForm.controls.role.errors?.required
+            "
+          >
+            The user role is required
+          </div>
+        </div>
+        <!-- <div class="form-group text-primary">
+          <label
+            for="branch"
+            [ngClass]="userForm.controls.branch.valid ? 'text-dark' : ''"
+            ><i *ngIf="userForm.controls.branch.valid" class="material-icons"
+              >check_circle</i
+            >Branch</label
+          >
+          <div class="input-group mb-0">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i
+                  class="fas fa-code-branch text-primary mx-auto"
+                  style="size: 50px"
+                >
+                </i>
+              </div>
+            </div>
+            <select
+              formControlName="branch"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  (userForm.controls.branch.touched || userForm.controls.branch.dirty) &&
+                  userForm.controls.branch.errors
+              }"
+              autocomplete="off"
+              placeholder="Select a branch"
+              required
+            >
+              <option value="" selected disabled>Select Branch</option>
+              <option *ngFor="let branches of branches" [ngValue]="branches">
+                {{ branches }}
+              </option>
+            </select>
+          </div>
+          <div
+            class="text-danger col"
+            *ngIf="
+              (userForm.controls.branch.touched || userForm.controls.branch.dirty) &&
+              userForm.controls.branch.errors?.required
+            "
+          >
+            The branch is required!
+          </div>
+        </div> -->
+        <div class="d-flex mt-3 mb-0 pt-2 pb-3 mx-auto">
+          <button
+            type="submit"
+            class="btn btn-outline-info col-5 mx-auto"
+            [disabled]="!userForm.valid"
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary col-5 mx-auto"
+            (click)="modalRef.hide()"
+          >
+            Cancel
+          </button>
+          <!-- <ngx-alerts></ngx-alerts> -->
+
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+<ng-template #template>
+  <div class="modal-header bg-dark">
+    <h4 class="modal-title text-white-75">User Photo</h4>
+
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="list-card-1 card mt-1 pt-2 mb-0 mx-auto pb-1 shadow-lg">
+      <div class="list-card-body card-body">
+        <div class="row d-flex justify-content-center">
+          <div class="col-12 d-flex justify-content-center">
+            <img
+              class="img-circle-1 mx-auto mt-2 mt-md-0 mt-xl-1 mb-1 pb-0"
+              [src]="imageUrl"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

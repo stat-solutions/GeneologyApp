@@ -1,0 +1,76 @@
+.card-body {
+  height: auto;
+  width: 100%;
+  min-width: 260px;
+  border-radius: 8px;
+contain: auto;
+}
+
+
+
+//media queries
+@media (min-width: 320px) {
+  .card-body {
+  }
+}
+
+
+@media (min-width: 360px) {
+  .card-body {
+  }
+    }
+
+
+@media (min-width: 375px) {
+  .card-body {
+  }
+}
+
+
+@media (min-width: 768px) {
+  .card-body {
+  }
+}
+
+
+@media (min-width: 812px) {
+  .card-body {
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .card-body {
+  }
+  .head-icon {
+    margin-top: 4rem !important;
+    margin-bottom: 1.8rem !important;
+  }
+  .jumbotron-fluid {
+  }
+}
+
+
+@media (min-width: 1100px) {
+  .head-icon {
+    margin-top: .6rem !important;
+    margin-bottom: .65rem !important;
+  }
+  .card-body {
+  }
+}
+
+
+@media (min-width: 1280px) {
+  .head-icon {
+    margin-top: 0rem !important;
+    margin-bottom: .65rem !important;
+  }
+  .card-body {
+  }
+  .jumbotron-fluid {
+  }
+}
+
+
+@media (min-width: 1320px) {}
